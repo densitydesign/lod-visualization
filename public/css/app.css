@@ -40,6 +40,18 @@ h4 {
   margin-bottom: 10px;
 }
 
+.article-img {
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200px;
+}
+
 .article-info {
-  padding: 15px 25px;
+  padding: 15px 45px;
+}
+
+.article-info a {
+  color: #000;
 }
