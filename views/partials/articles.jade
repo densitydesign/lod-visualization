@@ -1,0 +1,19 @@
+div.row
+	div.col-lg-3.col-lg-offset-1
+		h1 DaCena
+		p.lead A project about data journalism and linked data
+
+		input.col-lg-12(type="text", ng-model="query")
+		button.btn(ng-click="search()") Search
+
+	div.col-lg-6.col-lg-offset-1
+
+		div.article(ng-repeat="article in articles")
+			div.row
+				div.col-lg-4.article-img
+
+				div.col-lg-8.article-info
+					small {{ article.pub_date | date:'longDate' }}
+					a(href="/articles/{{$index}}")
+						h4 {{ article.headline.main }}
+					span {{ article.byline.original }}

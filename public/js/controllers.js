@@ -2,26 +2,26 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('AppCtrl', function ($scope, $http) {
+angular.module('myApp.controllers', [])
 
-    $http({
-      method: 'GET',
-      url: '/api/name'
-    }).
-    success(function (data, status, headers, config) {
-      $scope.name = data.name;
-    }).
-    error(function (data, status, headers, config) {
-      $scope.name = 'Error!'
-    });
+  .controller('IndexCtrl', function ($scope, $http, $injector, apiService) {
 
-  }).
-  controller('MyCtrl1', function ($scope) {
-    // write Ctrl here
+    $scope.query = 'Obama';
 
-  }).
-  controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
+    $scope.search = function(){
+      apiService.search( { q : $scope.query } )
+        .done(function(data){
+          $scope.articles = data;
+          $scope.$apply();
+        })
+    }
 
-  });
+    $scope.search();
+
+  })
+
+  .controller('ArticleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {
+
+    $scope.articleId = $routeParams.id;
+
+  })

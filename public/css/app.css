@@ -1,30 +1,45 @@
-/* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+/* Fonts */
+
+
+
+body, html {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
 
-.menu:before {
-  content: "[";
+h1, h2, h3, h4 {
+  font-family: 'Patua One';
 }
 
-.menu:after {
-  content: "]";
+h1 {
+  font-size: 60px;
 }
 
-.menu > li {
-  display: inline;
+h4 {
+  font-size: 22px;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+.lead {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 13px;
 }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+/* Scaffolding */
+.container {
+  margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+
+/* Articles */
+
+.article {
+  background-color: #eee;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.article-info {
+  padding: 15px 25px;
 }
