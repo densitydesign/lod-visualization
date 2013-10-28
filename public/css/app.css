@@ -50,6 +50,7 @@ h4 {
 
 .article-info {
   padding: 15px 45px;
+  max-height: 200px;
 }
 
 .article-info a {

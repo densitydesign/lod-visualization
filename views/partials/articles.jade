@@ -10,11 +10,11 @@ div.row
 
 		div.article(ng-repeat="article in articles")
 			div.row
-				div.col-lg-4
+				div.col-lg-4.col-sm-4
 					div.article-img(style="background-image: url({{ article.multimedia | thumbnail }});")
 
-				div.col-lg-8.article-info
+				div.col-lg-8.col-sm-8.article-info
 					small {{ article.pub_date | date:'longDate' }}
 					a(href="/articles/{{article._id}}")
-						h4 {{ article.headline.main | truncate:100 }}
+						h4 {{ article.headline.main | truncate:80 }}
 					span {{ article.byline.original }}
