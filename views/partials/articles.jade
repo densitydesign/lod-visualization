@@ -1,20 +1,21 @@
 div.row
 	div.col-lg-3.col-lg-offset-1
-		h1 DaCena
+		h1 {{title}}
 		p.lead A project about data journalism and linked data
 
-		input.col-lg-12(type="text", ng-model="query")
-		button.btn(ng-click="search()") Search
+		// input.col-lg-12(type="text", ng-model="query")
+		// button.btn(ng-click="search()") Search
 
 	div.col-lg-6.col-lg-offset-1
 
 		div.article(ng-repeat="article in articles")
 			div.row
 				div.col-lg-4.col-sm-4
-					div.article-img(style="background-image: url({{ article.multimedia | thumbnail }});")
+					div.article-img(style="background: #e5e5e5")
 
 				div.col-lg-8.col-sm-8.article-info
-					small {{ article.pub_date | date:'longDate' }}
-					a(href="/articles/{{article._id}}")
-						h4 {{ article.headline.main | truncate:80 }}
-					span {{ article.byline.original }}
+					small {{ article.date | parseDate | date:'longDate' }}
+					a(href="/articles/{{article.id}}")
+						h4 {{ article.title | truncate:80 }}
+					// span {{ article.source }}
+					p {{ article.numMainInstances || "0"}} entities

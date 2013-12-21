@@ -1,9 +1,27 @@
 div.row
 	div.col-lg-3.col-lg-offset-1
 
-		a(href="/articles") back to the articles
-		h3 {{articleId}}
+		// p
+			a(href="/articles") &#8617; Back to the articles
+		small {{article.date | parseDate | date:'longDate'}}
+		p
+			small by
+			strong 
+				a(href="{{article.url}}") {{article.source}}
+		h3 {{article.title}}
+
+		p
+			strong Entities ({{article.mainInstances.length}})
+		ul.list-unstyled
+			li(ng-repeat="instance in article.mainInstances")
+				a(ng-class="{strong:instance.isPrimary}", ng-click="createGraph(instance.instance.id)") {{instance.instance.label}} [{{instance.instance.id}}]
 
 	div.col-lg-6.col-lg-offset-1
+
+		div.article-text {{article.text}}
+
+div.row.text-center
+	
+	svg(simple-graph)
 
 		

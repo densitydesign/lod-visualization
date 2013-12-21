@@ -13,6 +13,14 @@ angular.module('myApp.filters', [])
 		}
 	})
 
+  .filter('parseDate', function () {
+        return function (text, format) {
+          if (!text) return "";
+          if (!format) var format = "%d/%m/%Y";
+          return d3.time.format(format).parse(text);
+        }
+    })
+
  .filter('truncate', function () {
         return function (text, length, end) {
             if (isNaN(length))

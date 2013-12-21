@@ -2,13 +2,23 @@ extends layout
 
 block body
 
+  div.prev(ng-show="prev")
+    a(href="{{prev}}") &lang;
+
   div.container
     
     div(ng-view)
 
+  div.next(ng-show="next")
+    a(href="{{next}}") &rang;
+
   // scripts
   script(src='js/lib/jquery/jquery.js')
   script(src='js/lib/bootstrap/bootstrap.min.js')
+  script(src="http://d3js.org/d3.v3.min.js", charset="utf-8")
+  script(src="js/lib/d3/d3.sankey.js")
+  script(src="js/lib/d3/d3.graph.js")
+  script(src="js/lib/d3/d3.linked.js")
 
   script(src='js/lib/angular/angular.js')
   script(src='js/app.js')

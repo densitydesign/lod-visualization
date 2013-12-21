@@ -21,14 +21,67 @@ h4 {
 
 .lead {
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 400;
   font-size: 13px;
+}
+
+a {
+  color: #888888;
+  cursor: pointer;
+
+  -webkit-transition: all 200ms linear;
+   -moz-transition: all 200ms linear;
+   -o-transition: all 200ms linear;
+   -ms-transition: all 200ms linear;
+   transition: all 200ms linear;
+}
+
+a:hover {
+  color: #222222;
 }
 
 /* Scaffolding */
 .container {
   margin-top: 100px;
   padding-bottom: 100px;
+}
+
+.prev,
+.next {
+  width: 40px;
+  top: 0px;
+  bottom: 0px;
+  background-color: #eee;
+  position: fixed;
+  font-size: 24px;
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Chrome, and Opera */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+}
+
+.prev {
+  left: 0px;
+}
+
+.next {
+  right: 0px;
 }
 
 
@@ -56,3 +109,48 @@ h4 {
 .article-info a {
   color: #000;
 }
+
+.article-text {
+  font-family: 'Merriweather', Georgia, serif;
+  line-height: 1.6;
+  font-size: 15px;
+  font-weight: 300;
+}
+/*
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-width: 5px;
+  stroke-opacity: .3;
+}*/
+
+
+#chart {
+  height: 500px;
+}
+
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+

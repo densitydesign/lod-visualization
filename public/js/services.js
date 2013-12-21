@@ -11,8 +11,7 @@ angular.module('myApp.services', [])
 	  
 	  return {
 	    
-	    search : function(request){
-	        
+	    search : function(request){  
 		    return $.ajax({
 	      	type : 'POST',
 	      	data : JSON.stringify(request),
@@ -20,6 +19,37 @@ angular.module('myApp.services', [])
 	      	contentType: 'application/json',
 	      	url: 'api/search'
 	      })
+	    },
+
+	    articles : function(request){
+	    	return $.ajax({
+	      	type : 'POST',
+	      	data : JSON.stringify(request),
+	      	dataType : 'json',
+	      	contentType: 'application/json',
+	      	url: 'api/articles'
+	      })
+	    },
+
+	    article : function(request){
+	    	return $.ajax({
+	      	type : 'POST',
+	      	data : JSON.stringify(request),
+	      	dataType : 'json',
+	      	contentType: 'application/json',
+	      	url: 'api/article'
+	      })
+	    },
+
+	    graph : function(request){
+	    	return $.ajax({
+	      	type : 'POST',
+	      	data : JSON.stringify(request),
+	      	dataType : 'json',
+	      	contentType: 'application/json',
+	      	url: 'api/graph'
+	      })
 	    }
+
 		}
 	});
