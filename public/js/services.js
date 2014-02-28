@@ -49,6 +49,13 @@ angular.module('myApp.services', [])
 	      	contentType: 'application/json',
 	      	url: 'api/graph'
 	      })
+	    },
+
+	    sampleFile : function(url){
+	    	return $.ajax({
+	      	dataType : 'json',
+	      	url: url
+	    	})
 	    }
 
 		}

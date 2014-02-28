@@ -1,0 +1,1524 @@
+{
+  "instances": [
+    {
+      "id": 7150,
+      "label": "Alessandro Del Piero",
+      "uri": "Dbp:Alessandro_Del_Piero"
+    },
+    {
+      "id": 8390,
+      "label": "San Vendemiano",
+      "uri": "Dbp:San_Vendemiano"
+    },
+    {
+      "id": 8783,
+      "label": "Italy",
+      "uri": "Dbp:Italy"
+    },
+    {
+      "id": 7166,
+      "label": "Rome",
+      "uri": "Dbp:Rome"
+    },
+    {
+      "id": 7156,
+      "label": "Juventus F.C.",
+      "uri": "Dbp:Juventus_F.C."
+    },
+    {
+      "id": 8592,
+      "label": "Antonio Conte",
+      "uri": "Dbp:Antonio_Conte"
+    },
+    {
+      "id": 7530,
+      "label": "Juventus Stadium",
+      "uri": "Dbp:Juventus_Stadium"
+    },
+    {
+      "id": 7172,
+      "label": "Turin",
+      "uri": "Dbp:Turin"
+    },
+    {
+      "id": 8692,
+      "label": "Piero Fassino",
+      "uri": "Dbp:Piero_Fassino"
+    },
+    {
+      "id": 8468,
+      "label": "Province of Turin",
+      "uri": "Dbp:Province_of_Turin"
+    },
+    {
+      "id": 7625,
+      "label": "Piedmont",
+      "uri": "Dbp:Piedmont"
+    },
+    {
+      "id": 7345,
+      "label": "Andrea Agnelli",
+      "uri": "Dbp:Andrea_Agnelli"
+    },
+    {
+      "id": 7748,
+      "label": "Calcio Padova",
+      "uri": "Dbp:Calcio_Padova"
+    }
+  ],
+  "links": [
+    {
+      "id": 20407,
+      "pathId": 1,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 8390,
+        "label": "San Vendemiano",
+        "uri": "Dbp:San_Vendemiano"
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 17004,
+      "pathId": 1,
+      "source": {
+        "id": 8390,
+        "label": "San Vendemiano",
+        "uri": "Dbp:San_Vendemiano"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 1,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 2,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 21081,
+      "pathId": 2,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 8592,
+        "label": "Antonio Conte",
+        "uri": "Dbp:Antonio_Conte"
+      },
+      "property": {
+        "id": 24,
+        "label": "manager",
+        "uri": "DbpProp:manager"
+      }
+    },
+    {
+      "id": 18672,
+      "pathId": 2,
+      "source": {
+        "id": 8592,
+        "label": "Antonio Conte",
+        "uri": "Dbp:Antonio_Conte"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 2,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 3,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 19645,
+      "pathId": 3,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 3,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 4,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 19389,
+      "pathId": 4,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 21122,
+      "pathId": 4,
+      "source": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 32,
+        "label": "location",
+        "uri": "DbpProp:location"
+      }
+    },
+    {
+      "id": 18575,
+      "pathId": 4,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 8692,
+        "label": "Piero Fassino",
+        "uri": "Dbp:Piero_Fassino"
+      },
+      "property": {
+        "id": 25,
+        "label": "leaderName",
+        "uri": "DbpProp:leaderName"
+      }
+    },
+    {
+      "id": 21517,
+      "pathId": 4,
+      "source": {
+        "id": 8692,
+        "label": "Piero Fassino",
+        "uri": "Dbp:Piero_Fassino"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 4,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 5,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 19389,
+      "pathId": 5,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 21122,
+      "pathId": 5,
+      "source": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 32,
+        "label": "location",
+        "uri": "DbpProp:location"
+      }
+    },
+    {
+      "id": 17836,
+      "pathId": 5,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 5,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 6,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 19389,
+      "pathId": 6,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 21122,
+      "pathId": 6,
+      "source": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 32,
+        "label": "location",
+        "uri": "DbpProp:location"
+      }
+    },
+    {
+      "id": 17771,
+      "pathId": 6,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 8468,
+        "label": "Province of Turin",
+        "uri": "Dbp:Province_of_Turin"
+      },
+      "property": {
+        "id": 29,
+        "label": "province",
+        "uri": "DbpProp:province"
+      }
+    },
+    {
+      "id": 17268,
+      "pathId": 6,
+      "source": {
+        "id": 8468,
+        "label": "Province of Turin",
+        "uri": "Dbp:Province_of_Turin"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 6,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 7,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 19389,
+      "pathId": 7,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 21122,
+      "pathId": 7,
+      "source": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 32,
+        "label": "location",
+        "uri": "DbpProp:location"
+      }
+    },
+    {
+      "id": 16984,
+      "pathId": 7,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 7625,
+        "label": "Piedmont",
+        "uri": "Dbp:Piedmont"
+      },
+      "property": {
+        "id": 26,
+        "label": "region",
+        "uri": "DbpProp:region"
+      }
+    },
+    {
+      "id": 19926,
+      "pathId": 7,
+      "source": {
+        "id": 7625,
+        "label": "Piedmont",
+        "uri": "Dbp:Piedmont"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 7,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 8,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 19389,
+      "pathId": 8,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 17295,
+      "pathId": 8,
+      "source": {
+        "id": 7530,
+        "label": "Juventus Stadium",
+        "uri": "Dbp:Juventus_Stadium"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 32,
+        "label": "location",
+        "uri": "DbpProp:location"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 8,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 9,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 18485,
+      "pathId": 9,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "property": {
+        "id": 28,
+        "label": "chairman",
+        "uri": "DbpProp:chairman"
+      }
+    },
+    {
+      "id": 17648,
+      "pathId": 9,
+      "source": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 18575,
+      "pathId": 9,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 8692,
+        "label": "Piero Fassino",
+        "uri": "Dbp:Piero_Fassino"
+      },
+      "property": {
+        "id": 25,
+        "label": "leaderName",
+        "uri": "DbpProp:leaderName"
+      }
+    },
+    {
+      "id": 21517,
+      "pathId": 9,
+      "source": {
+        "id": 8692,
+        "label": "Piero Fassino",
+        "uri": "Dbp:Piero_Fassino"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 9,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 10,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 18485,
+      "pathId": 10,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "property": {
+        "id": 28,
+        "label": "chairman",
+        "uri": "DbpProp:chairman"
+      }
+    },
+    {
+      "id": 17648,
+      "pathId": 10,
+      "source": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 17836,
+      "pathId": 10,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 10,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 11,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 18485,
+      "pathId": 11,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "property": {
+        "id": 28,
+        "label": "chairman",
+        "uri": "DbpProp:chairman"
+      }
+    },
+    {
+      "id": 17648,
+      "pathId": 11,
+      "source": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 17771,
+      "pathId": 11,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 8468,
+        "label": "Province of Turin",
+        "uri": "Dbp:Province_of_Turin"
+      },
+      "property": {
+        "id": 29,
+        "label": "province",
+        "uri": "DbpProp:province"
+      }
+    },
+    {
+      "id": 17268,
+      "pathId": 11,
+      "source": {
+        "id": 8468,
+        "label": "Province of Turin",
+        "uri": "Dbp:Province_of_Turin"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 11,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 12,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 18485,
+      "pathId": 12,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "property": {
+        "id": 28,
+        "label": "chairman",
+        "uri": "DbpProp:chairman"
+      }
+    },
+    {
+      "id": 17648,
+      "pathId": 12,
+      "source": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "target": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 16984,
+      "pathId": 12,
+      "source": {
+        "id": 7172,
+        "label": "Turin",
+        "uri": "Dbp:Turin"
+      },
+      "target": {
+        "id": 7625,
+        "label": "Piedmont",
+        "uri": "Dbp:Piedmont"
+      },
+      "property": {
+        "id": 26,
+        "label": "region",
+        "uri": "DbpProp:region"
+      }
+    },
+    {
+      "id": 19926,
+      "pathId": 12,
+      "source": {
+        "id": 7625,
+        "label": "Piedmont",
+        "uri": "Dbp:Piedmont"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 13,
+        "label": "country",
+        "uri": "DbpProp:country"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 12,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 13,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 18485,
+      "pathId": 13,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "property": {
+        "id": 28,
+        "label": "chairman",
+        "uri": "DbpProp:chairman"
+      }
+    },
+    {
+      "id": 17595,
+      "pathId": 13,
+      "source": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 41,
+        "label": "nationality",
+        "uri": "DbpProp:nationality"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 13,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 19875,
+      "pathId": 14,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 18485,
+      "pathId": 14,
+      "source": {
+        "id": 7156,
+        "label": "Juventus F.C.",
+        "uri": "Dbp:Juventus_F.C."
+      },
+      "target": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "property": {
+        "id": 28,
+        "label": "chairman",
+        "uri": "DbpProp:chairman"
+      }
+    },
+    {
+      "id": 17594,
+      "pathId": 14,
+      "source": {
+        "id": 7345,
+        "label": "Andrea Agnelli",
+        "uri": "Dbp:Andrea_Agnelli"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 10,
+        "label": "stateOfOrigin",
+        "uri": "DbpProp:stateOfOrigin"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 14,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 17201,
+      "pathId": 15,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 19,
+        "label": "birthPlace",
+        "uri": "DbpProp:birthPlace"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 15,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    },
+    {
+      "id": 16841,
+      "pathId": 16,
+      "source": {
+        "id": 7150,
+        "label": "Alessandro Del Piero",
+        "uri": "Dbp:Alessandro_Del_Piero"
+      },
+      "target": {
+        "id": 7748,
+        "label": "Calcio Padova",
+        "uri": "Dbp:Calcio_Padova"
+      },
+      "property": {
+        "id": 1,
+        "label": "team",
+        "uri": "DbpProp:team"
+      }
+    },
+    {
+      "id": 20258,
+      "pathId": 16,
+      "source": {
+        "id": 7748,
+        "label": "Calcio Padova",
+        "uri": "Dbp:Calcio_Padova"
+      },
+      "target": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "property": {
+        "id": 45,
+        "label": "ground",
+        "uri": "DbpProp:ground"
+      }
+    },
+    {
+      "id": 20792,
+      "pathId": 16,
+      "source": {
+        "id": 8783,
+        "label": "Italy",
+        "uri": "Dbp:Italy"
+      },
+      "target": {
+        "id": 7166,
+        "label": "Rome",
+        "uri": "Dbp:Rome"
+      },
+      "property": {
+        "id": 21,
+        "label": "capital",
+        "uri": "DbpProp:capital"
+      }
+    }
+  ],
+  "paths": [
+    {
+      "id": 1,
+      "length": 3
+    },
+    {
+      "id": 2,
+      "length": 4
+    },
+    {
+      "id": 3,
+      "length": 3
+    },
+    {
+      "id": 4,
+      "length": 6
+    },
+    {
+      "id": 5,
+      "length": 5
+    },
+    {
+      "id": 6,
+      "length": 6
+    },
+    {
+      "id": 7,
+      "length": 6
+    },
+    {
+      "id": 8,
+      "length": 4
+    },
+    {
+      "id": 9,
+      "length": 6
+    },
+    {
+      "id": 10,
+      "length": 5
+    },
+    {
+      "id": 11,
+      "length": 6
+    },
+    {
+      "id": 12,
+      "length": 6
+    },
+    {
+      "id": 13,
+      "length": 4
+    },
+    {
+      "id": 14,
+      "length": 4
+    },
+    {
+      "id": 15,
+      "length": 2
+    },
+    {
+      "id": 16,
+      "length": 3
+    }
+  ]
+}

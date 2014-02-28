@@ -28,7 +28,6 @@ angular.module('myApp.controllers', [])
       .done(function(data){
         $scope.articles = data;
         $scope.$apply();
-        console.log(data);
       })
 
   })
@@ -36,28 +35,71 @@ angular.module('myApp.controllers', [])
   .controller('ArticleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {
 
     $scope.articleId = $routeParams.id;
+    $scope.openGraph = false;
+    $scope.degree = 2;
 
-    apiService.article({id:$scope.articleId})
-      .done(function(data){
+    $scope.graphRequest = {};
+
+    apiService.article( { id : $scope.articleId })
+      .done(function (data){
         $scope.article = data;
         $scope.$apply();
-        console.log(data)
       })
-
-    var graph = {
-      article : $scope.articleId,
-      degree : 1
-    }
 
     $scope.createGraph = function(target){
-      graph.target = target;
-      graph.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
+      if (!target) return;
+      $scope.graphRequest = {
+        article : $scope.articleId,
+        degree : $scope.degree
+      }
 
-      apiService.graph(graph)
-      .done(function(data){
+      $scope.graphRequest.target = target;
+      $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
+
+      apiService.graph($scope.graphRequest)
+      .done(function (data){
         $scope.graph = data;
+        $scope.openGraph = true;
         $scope.$apply();
       })
-    }  
+    } 
+
+    $scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
+
+  })
+
+  .controller('SampleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {
+
+    $scope.articleId = $routeParams.id;
+    $scope.openGraph = false;
+    $scope.degree = 2;
+
+    $scope.graphRequest = {};
+
+    apiService.sampleFile('../data/article.json')
+      .done(function (data){
+        $scope.article = data;
+        $scope.$apply();
+      })
+
+    $scope.createGraph = function(target){
+      if (!target) return;
+      $scope.graphRequest = {
+        article : $scope.articleId,
+        degree : $scope.degree
+      }
+
+      $scope.graphRequest.target = target;
+      $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
+
+      apiService.sampleFile('data/graph.json')
+      .done(function (data){
+        $scope.graph = data;
+        $scope.openGraph = true;
+        $scope.$apply();
+      })
+    } 
+
+    $scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
 
   })

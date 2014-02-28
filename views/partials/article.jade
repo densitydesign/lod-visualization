@@ -11,6 +11,17 @@ div.row
 		h3 {{article.title}}
 
 		p
+			strong Degree ({{degree}})
+			br
+		
+			input(data-bslider
+				model="degree"
+				data-tooltip="false"
+				data-min="1"
+				data-max="4"
+				data-step="1")
+		
+		p
 			strong Entities ({{article.mainInstances.length}})
 		ul.list-unstyled
 			li(ng-repeat="instance in article.mainInstances")
@@ -22,6 +33,9 @@ div.row
 
 div.row.text-center
 	
-	svg(simple-graph)
+	div.linked(resizable, handles="n", ng-class="{open: openGraph, close: !openGraph}")
+		p(ng-show="graph.instances.length==0")
+			br
+			span Sorry, no data for this graph
+		svg(route-graph)
 
-		

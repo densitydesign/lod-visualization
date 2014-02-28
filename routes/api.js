@@ -3,7 +3,8 @@ var request = require('request'),
     headers = { 'Content-type': 'application/json' },
     articleSearchApiKey = '42b6b35b812acec99c722f368ead87bf:6:65720321',
     semanticApiKey = '78d85c4fe3261cde922f0602a729605b:11:65720321',
-    baseUrl = 'http://jeeg.siti.disco.unimib.it:82/web/app_dev.php/api/'
+    //baseUrl = 'http://jeeg.siti.disco.unimib.it:82/web/app_dev.php/api/'
+    baseUrl = 'http://jeeg.siti.disco.unimib.it:85/web/app_dev.php/neo4j/api/'
 
 
 // Articles list
@@ -18,7 +19,7 @@ exports.articles = function (req, res) {
       method : 'GET',
       url : baseUrl + 'articles',
       headers : headers,
-      qs : data
+      //qs : data
     },
 
     function (error, response, body) {
@@ -62,7 +63,7 @@ exports.graph = function (req, res) {
 
     {
       method : 'GET',
-      url : baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target + '/degree/' + data.degree,
+      url : baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target, //+ '/degree/' + data.degree,
       headers : headers
     },
 

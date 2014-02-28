@@ -40,6 +40,10 @@ a:hover {
   color: #222222;
 }
 
+p {
+  margin: 0 0 20px;
+}
+
 /* Scaffolding */
 .container {
   margin-top: 100px;
@@ -113,44 +117,103 @@ a:hover {
 .article-text {
   font-family: 'Merriweather', Georgia, serif;
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
 }
-/*
-.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
+
+
+.linked {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 10;
+  background: rgba(255,255,255,1);
+  -webkit-transition: translate3d 0.5s;
+  transition: translate3d 0.5s;
+  border-top: 3px solid #ddd;
 }
 
-.link {
-  stroke: #999;
-  stroke-width: 5px;
-  stroke-opacity: .3;
-}*/
+.linked.open {
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
 
+.linked.close {
+  -webkit-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+}
 
+svg text {
+  pointer-events: none;
+  font-family: 'Patua One';
+  font-size: 12px;
+}
+
+.node rect {
+    stroke-width: 0px;
+    fill: #F4F7A7;
+    opacity: 1;
+}
+
+.edgeLabel rect {
+  fill-opacity:0;
+}
+
+.edgeLabel text {
+  opacity: .7;
+}
+
+.edgePath {
+    stroke: #999999;
+    stroke-width: 25px;
+    fill: none;
+    opacity: .2;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+/*
 #chart {
   height: 500px;
 }
 
+.node.nodelink rect {
+  fill: #999999;
+  opacity: .2;
+  fill-opacity:1;
+}
+
 .node rect {
-  cursor: move;
-  fill-opacity: .9;
+  fill : #E6EC4C;
+  fill-opacity: .5;
+  stroke: none;
   shape-rendering: crispEdges;
 }
 
 .node text {
   pointer-events: none;
-  text-shadow: 0 1px 0 #fff;
+  font-family: 'Patua One';
+  font-size: 12px;
+}
+
+.node.nodelink text {
+  fill: #666;
 }
 
 .link {
   fill: none;
-  stroke: #000;
+  stroke: #999999;
   stroke-opacity: .2;
 }
 
 .link:hover {
-  stroke-opacity: .5;
-}
 
+}
+*/
