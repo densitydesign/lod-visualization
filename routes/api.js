@@ -58,12 +58,13 @@ exports.article = function (req, res) {
 exports.graph = function (req, res) {
 
   var data = req.body;
+  console.log(data.degree)
 
   request(
 
     {
       method : 'GET',
-      url : baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target, //+ '/degree/' + data.degree,
+      url : baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target + '/degree/' + data.degree,
       headers : headers
     },
 
