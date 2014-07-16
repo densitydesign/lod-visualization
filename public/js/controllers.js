@@ -26,6 +26,7 @@ angular.module('myApp.controllers', [])
 
     apiService.articles({})
       .done(function(data){
+        console.log(data)
         $scope.articles = data;
         $scope.$apply();
       })
@@ -37,6 +38,8 @@ angular.module('myApp.controllers', [])
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;
     $scope.degree = 2;
+
+    $scope.metric = "rarity";
 
     $scope.graphRequest = {};
 
@@ -55,6 +58,7 @@ angular.module('myApp.controllers', [])
 
       $scope.graphRequest.target = target;
       $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
+      $scope.graphRequest.metric = $scope.metric;
 
       apiService.graph($scope.graphRequest)
       .done(function (data){
@@ -62,9 +66,11 @@ angular.module('myApp.controllers', [])
         $scope.openGraph = true;
         $scope.$apply();
       })
-    } 
+    }
 
     $scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
+
+    $scope.$watch('metric', function(){ $scope.createGraph($scope.graphRequest.target); })
 
   })
 
@@ -98,7 +104,7 @@ angular.module('myApp.controllers', [])
         $scope.openGraph = true;
         $scope.$apply();
       })
-    } 
+    }
 
     $scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
 

@@ -6,21 +6,34 @@ div.row
 		small {{article.date | parseDate | date:'longDate'}}
 		p
 			small by
-			strong 
-				a(href="{{article.url}}") {{article.source}}
-		h3 {{article.title}}
+			strong
+				a(href="{{article.url}}")  {{article.source}}
+		p
+			h3 {{article.title}}
+			span {{article.date}}
 
 		p
 			strong Degree ({{degree}})
 			br
-		
+
 			input(data-bslider
 				model="degree"
 				data-tooltip="false"
 				data-min="1"
-				data-max="4"
+				data-max="3"
 				data-step="1")
-		
+
+		div
+			strong Metric
+			div.radio
+				label
+					input(type="radio", name="metric", value="rarity", ng-model="metric")
+					span Rarity
+			div.radio
+				label
+					input(type="radio", name="metric", value="popularity", ng-model="metric")
+					span Popularity
+
 		p
 			strong Entities ({{article.mainInstances.length}})
 		ul.list-unstyled
@@ -29,13 +42,12 @@ div.row
 
 	div.col-lg-6.col-lg-offset-1
 
-		div.article-text {{article.text}}
+		div.article-text(ng-bind-html="article.text")
 
 div.row.text-center
-	
+
 	div.linked(resizable, handles="n", ng-class="{open: openGraph, close: !openGraph}")
 		p(ng-show="graph.instances.length==0")
 			br
 			span Sorry, no data for this graph
 		svg(route-graph)
-

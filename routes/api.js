@@ -7,6 +7,7 @@ var request = require('request'),
     baseUrl = 'http://jeeg.siti.disco.unimib.it:85/web/app_dev.php/neo4j/api/'
 
 
+
 // Articles list
 
 exports.articles = function (req, res) {
@@ -49,7 +50,7 @@ exports.article = function (req, res) {
       res.json(data);
     }
   )
-  
+
 };
 
 
@@ -64,7 +65,7 @@ exports.graph = function (req, res) {
 
     {
       method : 'GET',
-      url : baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target + '/degree/' + data.degree,
+      url : baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target + '/degree/' + data.degree + '/metric/' + data.metric,
       headers : headers
     },
 
@@ -73,7 +74,7 @@ exports.graph = function (req, res) {
       res.json(data);
     }
   )
-  
+
 };
 
 
