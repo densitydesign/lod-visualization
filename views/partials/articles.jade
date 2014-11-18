@@ -14,7 +14,7 @@ div.row
 					div.article-img(style="background: #e5e5e5")
 
 				div.col-lg-8.col-sm-8.article-info
-					small {{ article.date | parseDate | date:'longDate' }}
+					small {{ article.date }}
 					a(href="/articles/{{article.id}}")
 						h4 {{ article.title | truncate:80 }}
 					// span {{ article.source }}

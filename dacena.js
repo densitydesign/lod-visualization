@@ -50,6 +50,8 @@ app.post('/api/search', api.search);
 app.post('/api/articles', api.articles);
 app.post('/api/article', api.article);
 app.post('/api/graph', api.graph);
+app.post('/api/associations', api.associations);
+app.post('/api/allAssociations', api.allAssociations);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

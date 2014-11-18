@@ -7,7 +7,7 @@ div.row
 		p
 			small by
 			strong
-				a(href="{{article.url}}")  {{article.source}}
+				a(href="{{article.url}}")  {{article.author}}
 		p
 			h3 {{article.title}}
 			span {{article.date}}
@@ -32,7 +32,7 @@ div.row
 			div.radio
 				label
 					input(type="radio", name="metric", value="popularity", ng-model="metric")
-					span Popularity
+					span Relevance
 
 		p
 			strong Entities ({{article.mainInstances.length}})

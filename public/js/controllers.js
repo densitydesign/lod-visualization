@@ -9,7 +9,6 @@ angular.module('myApp.controllers', [])
     $scope.title = "DaCena";
     $scope.prev = null;
     $scope.next = null;
-
   })
 
   .controller('IndexCtrl', function ($scope, $http, $injector, apiService) {
@@ -49,29 +48,64 @@ angular.module('myApp.controllers', [])
         $scope.$apply();
       })
 
-    $scope.createGraph = function(target){
-      if (!target) return;
-      $scope.graphRequest = {
-        article : $scope.articleId,
-        degree : $scope.degree
-      }
 
-      $scope.graphRequest.target = target;
-      $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
-      $scope.graphRequest.metric = $scope.metric;
+        $scope.allAssociations = function() {
+            var req = {id:$scope.articleId};
+            apiService.allAssociations(req)
+                .done(function (data) {
+                    console.log(data);
+                })
+        }
 
-      apiService.graph($scope.graphRequest)
-      .done(function (data){
-        $scope.graph = data;
-        $scope.openGraph = true;
-        $scope.$apply();
-      })
-    }
+        $scope.getAssociations = function() {
 
-    $scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
+            $scope.rarity = 0;
+            $scope.relevance = 1;
+            $scope.top=10;
+            $scope.all=true;
+
+            $scope.assocReq = {
+                rarity:$scope.rarity,
+                relevance:$scope.relevance,
+                top:$scope.top,
+                all:$scope.all,
+                id:$scope.articleId
+            };
+
+            console.log($scope.assocReq);
+            apiService.associations($scope.assocReq)
+                .done(function (data) {
+                    console.log(data);
+                })
+
+
+        }
+
+        $scope.allAssociations();
+
+        /*$scope.createGraph = function(target){
+          if (!target) return;
+          $scope.graphRequest = {
+            article : $scope.articleId,
+            degree : $scope.degree
+          }
+
+          $scope.graphRequest.target = target;
+          $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
+          $scope.graphRequest.metric = $scope.metric;
+
+          apiService.graph($scope.graphRequest)
+          .done(function (data){
+            $scope.graph = data;
+            $scope.openGraph = true;
+            $scope.$apply();
+          })
+        }*/
+
+    /*$scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
 
     $scope.$watch('metric', function(){ $scope.createGraph($scope.graphRequest.target); })
-
+*/
   })
 
   .controller('SampleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {

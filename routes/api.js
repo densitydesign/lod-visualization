@@ -4,7 +4,8 @@ var request = require('request'),
     articleSearchApiKey = '42b6b35b812acec99c722f368ead87bf:6:65720321',
     semanticApiKey = '78d85c4fe3261cde922f0602a729605b:11:65720321',
     //baseUrl = 'http://jeeg.siti.disco.unimib.it:82/web/app_dev.php/api/'
-    baseUrl = 'http://jeeg.siti.disco.unimib.it:85/web/app_dev.php/neo4j/api/'
+    //articles/2
+    baseUrl = 'http://jeeg.siti.disco.unimib.it/web/app_dev.php/api/'
 
 
 
@@ -19,7 +20,7 @@ exports.articles = function (req, res) {
     {
       method : 'GET',
       url : baseUrl + 'articles',
-      headers : headers,
+      headers : headers
       //qs : data
     },
 
@@ -51,6 +52,62 @@ exports.article = function (req, res) {
     }
   )
 
+};
+
+
+// Graph
+exports.allAssociations = function (req, res) {
+    var data = req.body;
+
+
+    var urlstr = 'articles/' + data.id + '/associations';
+    request(
+        {
+            method : 'GET',
+            url : baseUrl + urlstr,
+            headers : headers
+        },
+
+        function (error, response, body) {
+
+            var data = JSON.parse(body);
+            var fin = [];
+
+            fin.push(data.associations.one[0].source);
+            for(k in data.associations) {
+                //console.log(k,)
+                data.associations[k].forEach(function (e) {
+                    var cur = e.steps[e.steps.length - 1].destination;
+                    if (fin.indexOf(cur) == -1) fin.push(cur);
+                })
+            }
+            res.json(fin);
+        }
+    )
+}
+
+
+
+exports.associations = function (req, res) {
+
+    var data = req.body;
+
+
+    var urlstr = data.all ? 'article/' + data.id + '/serendipity/all/relevance/' + data.relevance + '/rarity/'+data.rarity : 'article/' + data.id + '/serendipity/relevance/' + data.relevance + '/rarity/'+data.rarity;
+    if(data.top) urlstr += /top/ + data.top;
+
+    request(
+        {
+            method : 'GET',
+            url : baseUrl + urlstr,
+            headers : headers
+        },
+
+        function (error, response, body) {
+            var data = JSON.parse(body);
+            res.json(data);
+        }
+    )
 };
 
 

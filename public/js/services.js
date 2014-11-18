@@ -41,15 +41,24 @@ angular.module('myApp.services', [])
 	      })
 	    },
 
-	    graph : function(request){
+	    associations : function(request){
 	    	return $.ajax({
 	      	type : 'POST',
 	      	data : JSON.stringify(request),
 	      	dataType : 'json',
 	      	contentType: 'application/json',
-	      	url: 'api/graph'
+	      	url: 'api/associations'
 	      })
 	    },
+          allAssociations : function(request){
+              return $.ajax({
+                  type : 'POST',
+                  data : JSON.stringify(request),
+                  dataType : 'json',
+                  contentType: 'application/json',
+                  url: 'api/allAssociations'
+              })
+          },
 
 	    sampleFile : function(url){
 	    	return $.ajax({
