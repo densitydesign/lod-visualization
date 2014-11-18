@@ -1,0 +1,147 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic);
+@import url(http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700);
+body {
+	height: 100%;
+}
+
+/*Typography*/
+p{
+	font-family: 'Merriweather', serif;
+	line-height: 160%;
+}
+
+h1{
+	font-family: 'Vollkorn', serif;
+	font-weight: 400;
+	padding-bottom: 10px;
+}
+
+h4{
+	font-family: 'Karla', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+h5{
+	font-family: 'Karla', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.newspaper{
+	text-transform: none;
+}
+
+.entity{
+	background: #ffe632;
+	padding:0 1px 0 1px;
+	font-weight: 700;
+}
+
+.main{
+
+}
+
+.article-conteiner{
+	height: 100%;
+	border-right:1px solid #EDEDED; 
+	padding-right: 20px;
+
+}
+
+.article-content{
+	height: 100%;
+}
+
+.article-header{
+	padding-top: 60px;
+	padding-bottom: 30px;
+}
+
+.article p{
+	padding-top: 30px;
+}
+
+.controls{
+	margin-top:50px;
+	height: 60px;
+	padding: 15px;
+}
+
+.viz{
+	margin:0;
+	padding: 0;
+}
+
+/* Tabs panel */
+.tabbable-panel {
+
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+  border: none;
+  margin: 0px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.tabbable-line > .nav-tabs > li {
+  margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+  border-bottom: 4px solid #FFF7BC;
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+  border-bottom: 4px solid #ffe632;
+  position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+  border: 0;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+  color: #404040;
+}
+.tabbable-line > .tab-content {
+  margin-top: -3px;
+  border: 0;
+  padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+  padding-bottom: 0;
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+
+.nav-tabs {
+    text-align:center;
+}
+
