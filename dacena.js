@@ -52,6 +52,7 @@ app.post('/api/article', api.article);
 app.post('/api/graph', api.graph);
 app.post('/api/associations', api.associations);
 app.post('/api/allAssociations', api.allAssociations);
+app.post('/api/completeNetwork', api.completeNetwork);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

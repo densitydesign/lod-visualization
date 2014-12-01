@@ -81,7 +81,25 @@ angular.module('myApp.controllers', [])
 
         }
 
-        $scope.allAssociations();
+
+        $scope.getNetwork = function() {
+
+            $scope.rarity = 0;
+            $scope.relevance = 1;
+            $scope.top=10;
+            $scope.all=true;
+
+            $scope.netReq = {
+                id:$scope.articleId
+            };
+
+            apiService.completeNetwork($scope.netReq)
+                .done(function (data) {
+                    console.log(data);
+                })
+        }
+
+        $scope.getNetwork();
 
         /*$scope.createGraph = function(target){
           if (!target) return;

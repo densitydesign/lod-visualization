@@ -59,6 +59,15 @@ angular.module('myApp.services', [])
                   url: 'api/allAssociations'
               })
           },
+          completeNetwork : function(request){
+              return $.ajax({
+                  type : 'POST',
+                  data : JSON.stringify(request),
+                  dataType : 'json',
+                  contentType: 'application/json',
+                  url: 'api/completeNetwork'
+              })
+          },
 
 	    sampleFile : function(url){
 	    	return $.ajax({
