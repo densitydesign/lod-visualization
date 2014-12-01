@@ -179,6 +179,8 @@ svg text {
   pointer-events: all;
 }
 
+.ui-match { background: yellow; }
+
 /*
 #chart {
   height: 500px;
@@ -217,3 +219,23 @@ svg text {
 
 }
 */
+
+path {
+    fill: none;
+    stroke: #777;
+    stroke-width: 1px;
+    marker-end: url(#arrow);
+}
+
+
+circle {
+    fill: #ccc;
+    stroke: #333;
+    stroke-width: 1px;
+}
+
+text {
+    font: 10px sans-serif;
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}

@@ -145,20 +145,143 @@ angular.module('myApp.directives', [])
             }
         }
     })
-    .directive('network', function (fileService) {
+    .directive('dnetwork', function(apiService) {
         return {
-            restrict: 'A',
+            restrict: 'E',
             replace: false,
-            templateUrl: 'views/templates/network.html',
+            //scope: { articleId: '=' },
+            template: '<div id="netviz">',
             link: function postLink(scope, element, attrs) {
 
+                var d3Container = element.find('#netviz')[0],
+                    container = d3.select(element[0]);
+
+                if(container.select("svg").empty()) {
+                    container.append("svg").attr("width","100%").attr("height",600);
+                }
+
+                var svg = container.select("svg");
+
+                scope.netReq = {
+                    id:scope.articleId
+                };
+
+                apiService.completeNetwork(scope.netReq)
+                    .done(function (data) {
+
+                        var width = 1200,
+                            height=600;
+
+                        var edges = [];
+                        data.edges.forEach(function(e) {
+                            var sourceNode = data.nodes.filter(function(n) {
+                                    return n.id === e.source;
+                                })[0],
+                                targetNode = data.nodes.filter(function(n) {
+                                    return n.id === e.target;
+                                })[0];
+
+                            edges.push({
+                                source: sourceNode,
+                                target: targetNode
+                                //value: e.Value
+                            });
+                        });
+
+                        var force = d3.layout.force()
+                            .nodes(data.nodes)
+                            .links(edges)
+                            .size([width, height])
+                            .linkDistance(100)
+                            .charge(-280)
+                            .gravity(0.2)
+                            .friction(0.9)
+                            .on("tick", tick)
+                            .start();
+
+
+                        console.log(force.links(),force.nodes());
+
+                        // Per-type markers, as they don't inherit styles.
+                        svg.append("defs").append("marker")
+                            .attr("id", "arrow")
+                            .attr("viewBox", "0 -5 10 10")
+                            .attr("refX", 15)
+                            .attr("refY", -1.5)
+                            .attr("markerWidth", 6)
+                            .attr("markerHeight", 6)
+                            .attr("orient", "auto")
+                            .append("path")
+                            .attr("d", "M0,-5L10,0L0,5");
+
+
+                        var path = svg.append("g").selectAll("path")
+                            .data(force.links(),function(d) { return d.source.id + "-" + d.target.id; })
+                            .enter().append("path")
+                           // .attr("class", function(d) { return "link " + d.type; })
+                           // .style("marker-end", "url(#arrow)");
+
+                        var circle = svg.append("g").selectAll("circle")
+                            .data(force.nodes(),function(d) { return d.id;})
+                            .enter().append("circle")
+                            .attr("r", 6)
+                            .on("click",function(d){console.log(d)})
+                            .style("fill",function(d){
+                                if(scope.terms.indexOf(d.id)>-1) return "#f7ec79";
+                                else return "#ddd";
+                            })
+                            .call(force.drag);
+
+                        var text = svg.append("g").selectAll("text")
+                            .data(force.nodes(),function(d) { return d.id;})
+                            .enter().append("text")
+                            .attr("x", 8)
+                            .attr("y", ".31em")
+                            .text(function(d) { return d.name; });
+
+// Use elliptical arc path segments to doubly-encode directionality.
+                        function tick() {
+                            path.attr("d", linkArc);
+                            circle.attr("transform", transform);
+                            text.attr("transform", transform);
+                        }
+
+                        function linkArc(d) {
+                            var dx = d.target.x - d.source.x,
+                                dy = d.target.y - d.source.y,
+                                dr = Math.sqrt(dx * dx + dy * dy);
+                            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+                        }
+
+                        function transform(d) {
+                            return "translate(" + d.x + "," + d.y + ")";
+                        }
+
+
+                    })
+
+
+
+
+            }
+        }
+    })
+    .directive('network', function (apiService) {
+        return {
+            restrict: 'E',
+            replace: false,
+            //scope: { articleId: '=' },
+            templateUrl: 'templates/network.html',
+            link: function postLink(scope, element, attrs) {
+                scope.articleId = 1;
                 scope.isCollapsed = true;
 
                 var sigmaContainer = element.find('#sigma-container')[0],
                     container = d3.select(element[0]),
-                    chart = d3.select(sigmaContainer),
-                    network = dacena.graph()
-                        .on('filtered', function (d) {
+                    chart = d3.select(sigmaContainer);
+
+                    var network = dacena.graph()
+                        /*.on('filtered', function (d) {
 
                             if (!d.nodeID) {
                                 scope.selected = undefined;
@@ -190,11 +313,11 @@ angular.module('myApp.directives', [])
                                 }
                             }
 
-                        });
+                        });*/
 
 
-                scope.indexes = JSON.parse(attrs.directiveData);
-                scope.index = scope.indexes[0];
+                //scope.indexes = JSON.parse(attrs.directiveData);
+                //scope.index = scope.indexes[0];
 
 
                 scope.updateNetwork = function (d) {
@@ -237,11 +360,15 @@ angular.module('myApp.directives', [])
                     network.zoomReset();
                 });
 
-                var update = function (data) {
+                var update = function () {
 
-                    var label = data.label;
-                    fileService.getFile(data.url).then(
-                        function (data) {
+                    //var label = data.label;
+                    scope.netReq = {
+                        id:scope.articleId
+                    };
+
+                    apiService.completeNetwork(scope.netReq)
+                        .done(function (data) {
 
                             //scope.bipartite = true; //to change w/ data.settings.bipartite when added to source json
                             scope.bipartite = data.settings.bipartite;
@@ -253,6 +380,7 @@ angular.module('myApp.directives', [])
 
                                 return node[0];
                             };
+                            console.log(scope.nodes);
                             scope.selected = undefined;
                             scope.isCollapsed = true;
 
@@ -273,7 +401,7 @@ angular.module('myApp.directives', [])
 
                             network.settings(settings);
 
-                            network.label(label)
+                            network.label("lol!")
 
                             chart.datum(data).call(network);
                             network.zoomReset()
@@ -286,16 +414,16 @@ angular.module('myApp.directives', [])
                     );
                 }
 
-                update(scope.index);
+                update();
 
-                scope.$watch('index', function (newValue, oldValue) {
+               /* scope.$watch('index', function (newValue, oldValue) {
                     var check = angular.equals(newValue, oldValue);
                     if (!check) {
 
                         update(newValue);
 
                     }
-                });
+                });*/
 
             }
         };

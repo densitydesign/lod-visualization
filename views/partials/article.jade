@@ -1,53 +1,55 @@
 div.row
-	div.col-lg-3.col-lg-offset-1
+    div.col-lg-3.col-lg-offset-1
 
-		// p
-			a(href="/articles") &#8617; Back to the articles
-		small {{article.date | parseDate | date:'longDate'}}
-		p
-			small by
-			strong
-				a(href="{{article.url}}")  {{article.author}}
-		p
-			h3 {{article.title}}
-			span {{article.date}}
+        small {{article.date | parseDate | date:'longDate'}}
+        p
+            small by
+            strong
+                a(href="{{article.url}}")  {{article.author}}
+        p
+            h3 {{article.title}}
+            span {{article.date}}
 
-		p
-			strong Degree ({{degree}})
-			br
+        p
+            strong Degree ({{degree}})
+            br
 
-			input(data-bslider
-				model="degree"
-				data-tooltip="false"
-				data-min="1"
-				data-max="3"
-				data-step="1")
+            input(data-bslider
+            model="degree"
+            data-tooltip="false"
+            data-min="1"
+            data-max="3"
+            data-step="1")
 
-		div
-			strong Metric
-			div.radio
-				label
-					input(type="radio", name="metric", value="rarity", ng-model="metric")
-					span Rarity
-			div.radio
-				label
-					input(type="radio", name="metric", value="popularity", ng-model="metric")
-					span Relevance
+        div
+            strong Metric
+            div.radio
+                label
+                    input(type="radio", name="metric", value="rarity", ng-model="metric")
+                    span Rarity
+            div.radio
+                label
+                    input(type="radio", name="metric", value="popularity", ng-model="metric")
+                    span Relevance
 
-		p
-			strong Entities ({{article.mainInstances.length}})
-		ul.list-unstyled
-			li(ng-repeat="instance in article.mainInstances")
-				a(ng-class="{strong:instance.isPrimary}", ng-click="createGraph(instance.instance.id)") {{instance.instance.label}} [{{instance.instance.id}}]
+        strong Entities ({{terms.length}})
+        div(ng-repeat="term in terms") {{term}}
 
-	div.col-lg-6.col-lg-offset-1
+        ul.list-unstyled
+            li(ng-repeat="instance in article.mainInstances")
+                a(ng-class="{strong:instance.isPrimary}", ng-click="createGraph(instance.instance.id)") {{instance.instance.label}} [{{instance.instance.id}}]
 
-		div.article-text(ng-bind-html="article.text")
+    div.col-lg-6.col-lg-offset-1
+
+        div.article-text(ng-bind-html-unsafe="article.text | highlight:terms")
 
 div.row.text-center
 
-	div.linked(resizable, handles="n", ng-class="{open: openGraph, close: !openGraph}")
-		p(ng-show="graph.instances.length==0")
-			br
-			span Sorry, no data for this graph
-		svg(route-graph)
+    div.linked(resizable, handles="n", ng-class="{open: openGraph, close: !openGraph}")
+        p(ng-show="graph.instances.length==0")
+            br
+            span Sorry, no data for this graph
+        svg(route-graph)
+
+div.row
+    dnetwork

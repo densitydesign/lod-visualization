@@ -98,7 +98,7 @@ exports.completeNetwork = function (req, res) {
         },
 
         function (error, response, body) {
-
+            console.log(body)
             var data = JSON.parse(body);
             var set = {bipartite: false,
                 labelThreshold: 2.5,
@@ -116,10 +116,10 @@ exports.completeNetwork = function (req, res) {
 
                 if (nodes.map(function (e) {
                     return e.id;
-                }).indexOf(ns1id) == -1) nodes.push({id: ns1id, label: s, color: "#ddd", size: 1});
+                }).indexOf(ns1id) == -1) nodes.push({id: ns1id, label: s, color: "#ddd", size: 1,attributes:{}});
                 if (nodes.map(function (e) {
                     return e.id;
-                }).indexOf(ns2id) == -1) nodes.push({id: ns2id, label: f.destination, color: "#ddd", size: 1});
+                }).indexOf(ns2id) == -1) nodes.push({id: ns2id, label: f.destination, color: "#ddd", size: 1,attributes:{}});
 
                 var dir = f.property.substr(0, 1);
                 if (dir === "R") {

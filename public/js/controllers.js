@@ -14,7 +14,6 @@ angular.module('myApp.controllers', [])
   .controller('IndexCtrl', function ($scope, $http, $injector, apiService) {
 
     /*$scope.query = 'Obama';
-
     $scope.search = function(){
       apiService.search( { q : $scope.query } )
         .done(function(data){
@@ -25,7 +24,6 @@ angular.module('myApp.controllers', [])
 
     apiService.articles({})
       .done(function(data){
-        console.log(data)
         $scope.articles = data;
         $scope.$apply();
       })
@@ -37,7 +35,7 @@ angular.module('myApp.controllers', [])
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;
     $scope.degree = 2;
-
+    $scope.terms=[];
     $scope.metric = "rarity";
 
     $scope.graphRequest = {};
@@ -53,7 +51,9 @@ angular.module('myApp.controllers', [])
             var req = {id:$scope.articleId};
             apiService.allAssociations(req)
                 .done(function (data) {
-                    console.log(data);
+                    $scope.terms=data;
+                    $scope.$apply();
+
                 })
         }
 
@@ -75,7 +75,7 @@ angular.module('myApp.controllers', [])
             console.log($scope.assocReq);
             apiService.associations($scope.assocReq)
                 .done(function (data) {
-                    console.log(data);
+
                 })
 
 
@@ -99,7 +99,7 @@ angular.module('myApp.controllers', [])
                 })
         }
 
-        $scope.getNetwork();
+        $scope.allAssociations();
 
         /*$scope.createGraph = function(target){
           if (!target) return;
