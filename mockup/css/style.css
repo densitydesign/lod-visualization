@@ -37,6 +37,7 @@ font-size: 7.6em;
 font-weight: 700;
 padding-top: 50px;
 margin-bottom: 0;
+padding-bottom: 40px;
 }
 
 .intro h2{
@@ -46,7 +47,7 @@ font-size: 1.3em;
 font-weight: 700;
 font-style: italic;
 margin-top: 0px;
-padding-bottom: 40px;
+
 }
 
 .intro h4, .explore-title {
@@ -72,6 +73,19 @@ padding-top: 20px;
 padding-bottom: 100px;
 }
 
+.about{
+padding-top: 50px;
+}
+
+.about p{
+font-size: 1.2em;
+padding-bottom: 10px;
+padding-top: 10px;
+padding-bottom: 50px;
+}
+
+
+
 .explore-article{
 	border: 1px solid #EDEDED;
 	padding: 15px;
@@ -90,13 +104,15 @@ padding-bottom: 100px;
 
 .explore-article:hover{
 	color:#000;
-	background-color: #969696;
+	background-color: #F5F5F5;
 	cursor: pointer;
 }
 
 .explore-article a:hover{
 	color: #000!important;
 }
+
+
 
 h2{
 	font-family: 'Roboto', sans-serif;
@@ -141,10 +157,6 @@ a:hover{
 
 .help{
 	color: #999;
-}
-
-.newspaper{
-	text-transform: none;
 }
 
 .entity{
@@ -271,7 +283,13 @@ a:hover{
 }
 
 
+
 .footer{
 	height: 150px;
+	background-color: #333; 	
+}
+
+.top{
+	height: 10px;
 	background-color: #333; 	
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DaCena</title>
+
+<!-- Bootstrap -->
+<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MyStyle -->
+<link href="css/style.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="top"></div>
+<div class="intro">
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+<h1>DaCena</h1>
+<h4 class="text-uppercase">Project overview</h4>
+<p>DaCENA (Data Context for News Articles) is a web application that showcases a new approach to reading online news articles with the support of a data context built from interlinked facts available in the Web of Data. Given a source article, a set of facts that are estimated to be more interesting for the readers are extracted from the Web and presented using tailored information visualization methods and an interactive user interface. By looking at these facts, the reader access background factual knowledge with the advantage of being supported in the interpretation of the news content and being suggested connections to related topics to further explore. 
+<P>
+</div>	
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-8 about">
+<h4 class="text-uppercase explore-title">Interlinked Facts in the Web of Data.</h4>
+<p>The Web has transformed into a large scale repository of facts. Facts represent features of specific entities. For example the fact < Brack Obama birthdate 1961-08-04> in DBPedia - a data-based representation of Wikipedia content – describes the year when Barack Obama was born. Semantic associations are facts that represent relations existing between two entities. For example, FACTX-> represent that ….  Several semantic associations that mention a common entity can be interlinked, forming a network of interlinked associations, or, interlinked facts. For example, if we also know that FACTY<-, we know that  the entity subject_of_FACTX is connected to the entity subject of subject_of_FACTY because – natural language explanation of the association -.   
+</p>
+<h4 class="text-uppercase explore-title">Data Context for a News Articles as a Network of Interlinked Fact.</h4>
+<p>DaCENA uses a novel interactive user interface to presents to the reader a set of interlinked facts that describe semantic associations between the main topic of an article, represented by an entity, and several other entities that are mentioned in the article. The interlinked associations represent context data that readers can navigate through with the goal to let them explore background knowledge relevant to the article by viewing at the network of relations that interconnect the entities in the article. 
+DaCENA strive to show only those semantic associations that are evaluated to be more interesting for the readers, among a very large amount of existing ones. To this end DaCENA looks for serendipitous associations by combining two different criteria: relevance, which captures how related an association is to the content of the article, and unexpectedness, which captures how an association is likely to be unknown to the reader.</p>
+<h4 class="text-uppercase explore-title">Advantages for the reader.</h4> 
+<p>The data context shown by DaCENA can help the reader to get a better insight into the context of the news. The reader can learn information that is relevant to better understand the content of the article, for example … Example 1. In addition the reader might uncover unknown fact, that may shed a different light on the article content Example 2. The experienced reader, or the journalist, may use the data context to discover unkown connections or focus on little known facts that can inspire a new story. </p> 
+</div>	
+</div>
+</div>
+
+
+<div class="footer">
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})</script>
+</body>
+</html>
