@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic);
-@import url(http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic);
-@import url(http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,400);
+@import url(http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic);
+
 body {
 	height: 100%;
 }
@@ -9,34 +10,44 @@ body {
 p{
 	font-family: 'Merriweather', serif;
 	line-height: 170%;
-	font-size: 13px;
+	font-size: 0.9em;
 }
 
 h1{
-	font-family: 'Vollkorn', serif;
-	font-weight: 400;
-	padding-bottom: 10px;
+width: 100%;
+font-family: 'Playfair Display', serif;
+font-size: 2.6em;
+font-weight: 700;
 }
 
 h4{
 	font-family: 'Karla', sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 0.9em;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
 
 h5{
-	font-family: 'Karla', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 0.9em;
 }
 
 label{
-	font-family: 'Karla', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 1em;
 	padding-right: 3px;
+}
+
+a, a:visited{
+	color: #000;
+}
+
+a:hover{
+	text-decoration: none;
+	color: #ccc;
 }
 
 .help{
@@ -170,4 +181,6 @@ label{
 .nav-tabs {
     text-align:center;
 }
+
+
 
