@@ -20,11 +20,96 @@ font-size: 2.6em;
 font-weight: 700;
 }
 
+.intro{
+background: #FFF7BC;
+padding-bottom: 20px;
+}
+
+.intro hr{
+background: #FFF7BC;
+padding-bottom: 50px;
+}
+
+.intro h1{
+width: 100%;
+font-family: 'Playfair Display', serif;
+font-size: 7.6em;
+font-weight: 700;
+padding-top: 50px;
+margin-bottom: 0;
+}
+
+.intro h2{
+width: 100%;
+font-family: 'Playfair Display', serif;
+font-size: 1.3em;
+font-weight: 700;
+font-style: italic;
+margin-top: 0px;
+padding-bottom: 40px;
+}
+
+.intro h4, .explore-title {
+font-weight: 700;
+}
+
+.intro a{
+font-weight: 400;
+}
+
+.intro a:hover{
+color: #747474;
+}
+
+.intro p{
+font-size: 1.2em;
+padding-bottom: 10px;
+padding-top: 10px;
+}
+
+.explore{
+padding-top: 20px;
+padding-bottom: 100px;
+}
+
+.explore-article{
+	border: 1px solid #EDEDED;
+	padding: 15px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	transition: all 0.2s linear;
+}
+
+.explore-article h1{
+	width: 100%;
+	font-family: 'Playfair Display', serif;
+	font-size: 2.3em;
+	font-weight: 700;
+	margin-top: 0;
+}
+
+.explore-article:hover{
+	color:#000;
+	background-color: #969696;
+	cursor: pointer;
+}
+
+.explore-article a:hover{
+	color: #000!important;
+}
+
+h2{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+	line-height: 140%;
+}
+
 h4{
-	font-family: 'Karla', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 	font-size: 0.9em;
-	text-transform: uppercase;
 	letter-spacing: 1px;
 }
 
@@ -39,6 +124,10 @@ label{
 	font-weight: 400;
 	font-size: 1em;
 	padding-right: 3px;
+}
+
+a {
+	transition: all 0.2s linear;
 }
 
 a, a:visited{
@@ -62,7 +151,6 @@ a:hover{
 	background: #FFF7BC;
 	padding:0 1px 0 1px;
 	font-weight: 700;
-	cursor: pointer;
 }
 
 .entity:hover{
@@ -73,7 +161,7 @@ a:hover{
 
 }
 
-.article-conteiner{
+.article-container{
 	height: 100%;
 	border-right:1px solid #EDEDED; 
 	padding-right: 20px;
@@ -183,4 +271,7 @@ a:hover{
 }
 
 
-
+.footer{
+	height: 150px;
+	background-color: #333; 	
+}
