@@ -5,15 +5,14 @@
 
 body, html {
   font-family: 'Lato', Helvetica, Arial, sans-serif;
+    height:100%;
+    overflow-y: hidden;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Patua One';
 }
 
-h1 {
-  font-size: 60px;
-}
 
 h4 {
   font-size: 22px;
@@ -149,7 +148,6 @@ p {
 
 svg text {
   pointer-events: none;
-  font-family: 'Patua One';
   font-size: 12px;
 }
 
@@ -179,7 +177,6 @@ svg text {
   pointer-events: all;
 }
 
-.ui-match { background: yellow; }
 
 /*
 #chart {
@@ -238,4 +235,333 @@ text {
     font: 10px sans-serif;
     pointer-events: none;
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,400);
+@import url(http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic);
+
+body {
+    height: 100%;
+}
+
+/*Typography*/
+p{
+    font-family: 'Merriweather', serif;
+    line-height: 170%;
+    font-size: 0.9em;
+}
+
+h1{
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6em;
+    font-weight: 700;
+}
+
+.intro{
+    background: #FFF7BC;
+    padding-bottom: 20px;
+}
+
+.intro hr{
+    background: #FFF7BC;
+    padding-bottom: 50px;
+}
+
+.intro h1{
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-size: 7.6em;
+    font-weight: 700;
+    padding-top: 50px;
+    margin-bottom: 0;
+    padding-bottom: 40px;
+}
+
+.intro h2{
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    font-style: italic;
+    margin-top: 0px;
+
+}
+
+.intro h4, .explore-title {
+    font-weight: 700;
+}
+
+.intro a{
+    font-weight: 400;
+}
+
+.intro a:hover{
+    color: #747474;
+}
+
+.intro p{
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.explore{
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+
+.about{
+    padding-top: 50px;
+}
+
+.about p{
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+
+
+.explore-article{
+    border: 1px solid #EDEDED;
+    padding: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    transition: all 0.2s linear;
+}
+
+.explore-article h1{
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3em;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.explore-article:hover{
+    color:#000;
+    background-color: #F5F5F5;
+    cursor: pointer;
+}
+
+.explore-article a:hover{
+    color: #000!important;
+}
+
+
+
+h2{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    line-height: 140%;
+}
+
+h4{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+h5{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    padding-right: 3px;
+}
+
+a {
+    transition: all 0.2s linear;
+}
+
+a, a:visited{
+    color: #000;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #ccc;
+}
+
+.help{
+    color: #999;
+}
+
+.entity, .ui-match{
+    background: #FFF7BC;
+    padding:0 1px 0 1px;
+    font-weight: 700;
+}
+
+.entity:hover,.ui-match:hover{
+    background: #ffe632;
+}
+
+.main{
+
+}
+
+.article-container{
+    height: 100%;
+    border-right:1px solid #EDEDED;
+    padding-right: 20px;
+    padding-left: 20px;
+
+}
+
+.article-content{
+    height: 100%;
+}
+
+.article-header{
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.article p{
+    padding-top: 30px;
+}
+
+.controls{
+    margin-top:0px;
+    height: 80px;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 15px;
+}
+
+.settings{
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.viz{
+    margin:0;
+    padding: 0;
+}
+
+/* Tabs panel */
+.tabbable-panel {
+
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+    border-bottom: 1px solid #e7e7e7;
+    margin: 0px;
+    padding-top: 15px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+}
+.tabbable-line > .nav-tabs > li {
+    margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+    border: 0;
+    margin-right: 0;
+    color: #737373;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+    color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+    border-bottom: 4px solid #FFF7BC;
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+    border: 0;
+    background: none !important;
+    color: #333333;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+    color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+    margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+    border-bottom: 4px solid #ffe632;
+    position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+    border: 0;
+    color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+    color: #404040;
+}
+.tabbable-line > .tab-content {
+    margin-top: -3px;
+    border: 0;
+    padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+    padding-bottom: 0;
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+
+.nav-tabs {
+    text-align:center;
+}
+
+
+
+.footer{
+    height: 150px;
+    background-color: #333;
+}
+
+.top{
+    height: 10px;
+    background-color: #333;
+}
+
+
+.article-conteiner{
+    overflow-y: auto;
+}
+text {
+    font-family: "Roboto";
+}
+.paths {
+    position: absolute;
+    background: white;
+    border-top: 1px solid black;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    height: 200px;
+    overflow-y: auto;
+}
+.paths i {
+    text-decoration: none;
+    padding:0px 5px;
+    background-color:#ddd;
+    display: inline-block;
+    margin: 0 3px;
+}
+.paths i.fa {
+    background-color: transparent;
+}
+.term{
+    background-color: #FFF7BC !important;
+}
+.path-line{
+    margin-bottom: 3px;
 }

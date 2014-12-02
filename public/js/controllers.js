@@ -35,16 +35,26 @@ angular.module('myApp.controllers', [])
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;
     $scope.degree = 2;
-    $scope.terms=[];
-    $scope.metric = "rarity";
+    $scope.relevance = 1;
+    $scope.rarity = 1;
+    $scope.cut = 0;
+
 
     $scope.graphRequest = {};
+
+    $(".article-conteiner").height($(window).height());
 
     apiService.article( { id : $scope.articleId })
       .done(function (data){
         $scope.article = data;
         $scope.$apply();
       })
+
+        $scope.dirLeft = function(t) {
+            if(t.substr(0,1)==="L") return true;
+            else return false;
+        }
+
 
 
         $scope.allAssociations = function() {
@@ -77,8 +87,6 @@ angular.module('myApp.controllers', [])
                 .done(function (data) {
 
                 })
-
-
         }
 
 
@@ -99,7 +107,7 @@ angular.module('myApp.controllers', [])
                 })
         }
 
-        $scope.allAssociations();
+        //$scope.allAssociations();
 
         /*$scope.createGraph = function(target){
           if (!target) return;
@@ -133,6 +141,8 @@ angular.module('myApp.controllers', [])
     $scope.degree = 2;
 
     $scope.graphRequest = {};
+
+    $scope.controls = false;
 
     apiService.sampleFile('../data/article.json')
       .done(function (data){

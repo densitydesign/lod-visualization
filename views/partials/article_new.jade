@@ -1,0 +1,76 @@
+.main
+    .container-fluid
+        .row
+            .col-md-3.article-conteiner
+                .article-content
+                    .article-header
+
+
+                        a.back(href='#')
+                        h4.text-uppercase
+                            i.fa.fa-arrow-circle-left
+                            |  Back
+                        h1 {{article.title}}
+                        hr
+                        h5 By {{article.author}}
+                        h4.text-uppercase {{article.date}}
+                        a.text-capitalize(href='{{article.url}}')
+                            h4
+                                i.fa.fa-link
+                                |  Original article
+                        hr
+                        h4.text-uppercase
+                            | Main Entity:
+                            span.entity {{terms[0] | escape}}
+
+                    p(ng-bind-html-unsafe="article.text | highlight:terms")
+
+            .col-md-9.viz
+                .tabbable-panel
+                    .tabbable-line
+                        ul.nav.nav-tabs
+                            .pull-left.settings(ng-click='controls=!controls')
+                                i.fa.fa-cog
+
+                            li.active
+                                a(href='#tab_default_1', data-toggle='tab') View 1
+
+                            li
+                                a(href='#tab_default_2', data-toggle='tab') View 2
+
+                        .controls(ng-show='controls')
+                            .row
+                                .col-md-4
+                                    label Relevance
+                                    span.help
+                                        i.fa.fa-question-circle(data-toggle='tooltip', data-placement='right', title='Description of this setting')
+                                    div
+                                        input(type='number', ng-model='relevance', min='0', max='1', step='0.01')
+                                .col-md-4
+                                    label Rarity
+                                    span.help
+                                        i.fa.fa-question-circle(data-toggle='tooltip', data-placement='right', title='Description of this setting')
+                                    div
+                                        input(type='number', ng-model='rarity', min='0', max='1', step='0.01')
+
+                                .col-md-4
+                                    label Threshold
+                                    span.help
+                                        i.fa.fa-question-circle(data-toggle='tooltip', data-placement='right', title='Description of this setting')
+                                    div
+                                        input(type='number', ng-model='cut', min='0', max='100')
+
+                        .tab-content
+                            #tab_default_1.tab-pane.active
+                                dnetwork
+
+                            #tab_default_2.tab-pane
+
+            .col-md-9.paths(ng-show="selected")
+                div.path-line(ng-repeat="path in paths")
+                    i.term {{terms[0] | escape}}
+                    span(ng-repeat="step in path.steps")
+                        i.fa.fa-chevron-left(ng-show="dirLeft(step.property)")
+                        |{{step.property | cutprop}}
+                        i.fa.fa-chevron-right(ng-show="!dirLeft(step.property)")
+                        i(ng-class='{"term":terms.indexOf(step.destination)>-1}') {{ step.destination | escape}}

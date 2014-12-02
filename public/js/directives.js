@@ -135,7 +135,7 @@ angular.module('myApp.directives', [])
                 }
 
                 options = angular.extend(options, attrs.options);
-                console.log(attrs)
+
                 var slider = $(element).slider(options)
                     .on('slideStop', function (event) {
                         scope[attrs.model] = event.value;
@@ -145,7 +145,7 @@ angular.module('myApp.directives', [])
             }
         }
     })
-    .directive('dnetwork', function(apiService) {
+    .directive('dnetwork', function(apiService, $rootScope) {
         return {
             restrict: 'E',
             replace: false,
@@ -153,14 +153,36 @@ angular.module('myApp.directives', [])
             template: '<div id="netviz">',
             link: function postLink(scope, element, attrs) {
 
+                function redraw() {
+                    svg.attr("transform",
+                            "translate(" + d3.event.translate + ")"
+                            + " scale(" + d3.event.scale + ")");
+                }
+
+
                 var d3Container = element.find('#netviz')[0],
                     container = d3.select(element[0]);
 
+                var w = $("#tab_default_1").innerWidth();
+                var h = $(window).height()-$(".nav-tabs").innerHeight();
+
                 if(container.select("svg").empty()) {
-                    container.append("svg").attr("width","100%").attr("height",600);
+                    container.append("svg").attr("width",w).attr("height",h);
                 }
 
-                var svg = container.select("svg");
+                var svg = container.select("svg")
+                    //.attr("viewBox", "0 0 " + width + " " + height )
+                    .attr("preserveAspectRatio", "xMidYMid meet")
+                    .attr("pointer-events", "all")
+                    .on("click",function() {
+                        if(scope.clicked) {
+                            deselect(true);
+                        }
+
+                    })
+                    .call(d3.behavior.zoom().on("zoom", redraw))
+                    .append("g")
+
 
                 scope.netReq = {
                     id:scope.articleId
@@ -169,11 +191,17 @@ angular.module('myApp.directives', [])
                 apiService.completeNetwork(scope.netReq)
                     .done(function (data) {
 
-                        var width = 1200,
-                            height=600;
+                        console.log(data);
+                        scope.clicked = false;
+                        scope.terms=data.terms;
+                        scope.$apply();
+                        //$rootScope.$broadcast("terms",)
+                        var width = w,
+                            height=h;
 
                         var edges = [];
                         data.edges.forEach(function(e) {
+
                             var sourceNode = data.nodes.filter(function(n) {
                                     return n.id === e.source;
                                 })[0],
@@ -186,21 +214,21 @@ angular.module('myApp.directives', [])
                                 target: targetNode
                                 //value: e.Value
                             });
+
                         });
 
                         var force = d3.layout.force()
                             .nodes(data.nodes)
                             .links(edges)
                             .size([width, height])
-                            .linkDistance(100)
-                            .charge(-280)
+                            .linkDistance(70)
+                            .charge(-350)
                             .gravity(0.2)
                             .friction(0.9)
                             .on("tick", tick)
                             .start();
 
 
-                        console.log(force.links(),force.nodes());
 
                         // Per-type markers, as they don't inherit styles.
                         svg.append("defs").append("marker")
@@ -225,19 +253,90 @@ angular.module('myApp.directives', [])
                             .data(force.nodes(),function(d) { return d.id;})
                             .enter().append("circle")
                             .attr("r", 6)
-                            .on("click",function(d){console.log(d)})
+
                             .style("fill",function(d){
                                 if(scope.terms.indexOf(d.id)>-1) return "#f7ec79";
                                 else return "#ddd";
                             })
-                            .call(force.drag);
+                            .call(force.drag)
+                            .on("mouseover",function(d){
+                                if(!scope.clicked) {
+                                    circle.style("opacity", 0.3);
+                                    path.style("opacity", 0.3);
+                                    text.style("opacity", 0.3);
+
+                                    d3.select(this).style("opacity", 1);
+                                    path.filter(function (e) {
+                                        return e.target.id == d.id || e.source.id == d.id
+                                    })
+                                        .style("opacity", 1)
+                                        .each(function (e, j) {
+                                            circle.filter(function (f) {
+                                                return f.id == e.target.id || f.id == e.source.id
+                                            })
+                                                .style("opacity", 1);
+
+                                        })
+                                    text.filter(function (f) {
+                                        return f.id === d.id
+                                    })
+                                        .attr("x", 8)
+                                        .style("opacity", 1);
+                                }
+                            })
+                            .on("mouseout",function(d) {
+                                if(!scope.clicked) {
+                                   deselect(false);
+                                }
+                            });
+
+                            circle.filter(function(d){
+                                return d.id !== scope.terms[0] && scope.terms.indexOf(d.id)>-1
+                            })
+                            .on("click",function(d){
+                                if(!scope.clicked) {
+                                    d3.event.stopPropagation();
+                                    scope.clicked = true;
+
+                                    path.style("opacity", 0);
+                                    circle.style("opacity", 0);
+                                    text.style("opacity", 0);
+
+                                    var pf = pathFinder(data.original.associations, d.id);
+                                    var names = pf.names;
+                                    scope.selected = d.id;
+                                    scope.paths = pf.paths;
+                                    scope.$apply();
+                                        path.filter(function (e) {
+                                        return names.indexOf(e.target.id) > -1 && names.indexOf(e.source.id) > -1
+                                    })
+                                        .style("opacity", 1);
+
+                                    circle.filter(function (e) {
+                                        return names.indexOf(e.id) > -1
+                                    })
+                                        .style("opacity", 1);
+
+                                    text.filter(function (e) {
+                                        return names.indexOf(e.id) > -1
+                                    })
+                                        .attr("x",8)
+                                        .style("opacity", 1);
+
+                                }
+                                else deselect(true);
+                            })
+
 
                         var text = svg.append("g").selectAll("text")
                             .data(force.nodes(),function(d) { return d.id;})
                             .enter().append("text")
-                            .attr("x", 8)
+                            .attr("x", function(d) {
+                                if (scope.terms.indexOf(d.id) > -1) return 8;
+                                else return 10000;
+                            })
                             .attr("y", ".31em")
-                            .text(function(d) { return d.name; });
+                            .text(function(d) { return d.label.replace(/_/g," "); });
 
 // Use elliptical arc path segments to doubly-encode directionality.
                         function tick() {
@@ -257,12 +356,48 @@ angular.module('myApp.directives', [])
                             return "translate(" + d.x + "," + d.y + ")";
                         }
 
-
                     })
 
+                function deselect(unclick) {
 
+                    if(unclick) {
+                        scope.clicked = false;
+                        scope.selected = null;
+                        scope.$apply();
+                    }
+                    d3.selectAll("svg circle").style("opacity", 1);
+                    d3.selectAll("svg path").style("opacity", 1);
+                    d3.selectAll("svg text").style("opacity", 1)
+                        .attr("x", function (d) {
+                            if (scope.terms.indexOf(d.id) > -1) return 8;
+                            else return 10000;
+                        })
+                }
 
+                     function pathFinder(paths,name) {
+                        var tot = [];
+                        var res = [];
+                         for(var k in paths) {
+                             tot = tot.concat(paths[k]);
+                         }
 
+                         var newTot = tot.filter(function(d){
+                             var l = d.steps.length-1;
+                             var n = d.steps[l].destination;
+                             //console.log(n,name,n===name);
+                             return n === name;
+                         })
+
+                         res.push(newTot[0].source);
+                         newTot.forEach(function(e,j){
+
+                             e.steps.forEach(function(f,k){
+
+                                if(res.indexOf(f.destination)==-1) res.push(f.destination);
+                             })
+                         })
+                            return {paths:newTot, names:res};
+                     }
             }
         }
     })
@@ -380,7 +515,8 @@ angular.module('myApp.directives', [])
 
                                 return node[0];
                             };
-                            console.log(scope.nodes);
+
+
                             scope.selected = undefined;
                             scope.isCollapsed = true;
 

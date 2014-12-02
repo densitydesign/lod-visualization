@@ -5,8 +5,8 @@ var request = require('request'),
     semanticApiKey = '78d85c4fe3261cde922f0602a729605b:11:65720321',
 //baseUrl = 'http://jeeg.siti.disco.unimib.it:82/web/app_dev.php/api/'
 //articles/2
-    baseUrl = 'http://jeeg.siti.disco.unimib.it/web/app_dev.php/api/'
-
+    //baseUrl = 'http://jeeg.siti.disco.unimib.it/web/app_dev.php/api/'
+    baseUrl="http://siti-rack.siti.disco.unimib.it/dacena-v3/web/app.php/api/"
 
 // Articles list
 
@@ -100,14 +100,10 @@ exports.completeNetwork = function (req, res) {
         function (error, response, body) {
             console.log(body)
             var data = JSON.parse(body);
-            var set = {bipartite: false,
-                labelThreshold: 2.5,
-                outgoing: "Outgoing links to:",
-                incoming: "Incoming links from:",
-                mutual: "Mutual links with:"
-            }
+
             var nodes = [];
             var edges = [];
+            var terms = [];
 
             var computeEdges = function (f, s) {
 
@@ -143,25 +139,29 @@ exports.completeNetwork = function (req, res) {
                     }
                 }
             };
-            //fin.push(data.associations.one[0].source);
+
+
+
             for (k in data.associations) {
 
-                data.associations[k].forEach(function (e) {
+                if (data.associations[k].length) {
 
-                    console.log(e)
-                    var source = e.source;
+                    data.associations[k].forEach(function (e) {
 
-                    e.steps.forEach(function (f, j) {
+                        var source = e.source;
+                        if(terms.indexOf(source)==-1) terms.push(source);
 
-                        computeEdges(f, source);
+                        e.steps.forEach(function (f, j) {
 
-                        if (j > 0) {
+                            if (j == e.steps.length - 1 && terms.indexOf(f.destination) == -1) terms.push(f.destination);
+                            computeEdges(f, source);
                             source = f.destination;
-                        }
+                        })
                     })
-                })
+                }
+
             }
-            res.json({settings:set, edges: edges, nodes: nodes});
+            res.json({original: data, terms: terms, edges: edges, nodes: nodes});
         }
     )
 }

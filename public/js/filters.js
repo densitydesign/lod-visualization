@@ -37,4 +37,16 @@ angular.module('myApp.filters', [])
             }
 
         };
-    });
+    })
+    .filter('escape', function() {
+            return function (text) {
+                return text.replace(/_/g," ");
+            }
+        })
+
+.filter('cutprop', function() {
+    return function (text) {
+
+        return text.substr(2);
+    }
+});
