@@ -98,7 +98,7 @@ exports.completeNetwork = function (req, res) {
         },
 
         function (error, response, body) {
-            console.log(body)
+
             var data = JSON.parse(body);
 
             var nodes = [];
