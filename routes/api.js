@@ -6,7 +6,7 @@ var request = require('request'),
 //baseUrl = 'http://jeeg.siti.disco.unimib.it:82/web/app_dev.php/api/'
 //articles/2
     //baseUrl = 'http://jeeg.siti.disco.unimib.it/web/app_dev.php/api/'
-    baseUrl="http://siti-rack.siti.disco.unimib.it/dacena-v3/web/app.php/api/"
+    baseUrl="http://siti-rack.siti.disco.unimib.it/dacena-v3/web/app_dev.php/api/"
 
 // Articles list
 
