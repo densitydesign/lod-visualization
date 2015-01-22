@@ -22,9 +22,12 @@ angular.module('myApp.controllers', [])
         })
     }*/
 
+        console.log("ad!!");
+
     apiService.articles({})
       .done(function(data){
         $scope.articles = data;
+            console.log(data);
         $scope.$apply();
       })
 
@@ -125,7 +128,6 @@ angular.module('myApp.controllers', [])
 
                             return d.id.toLowerCase() === newValue.toLowerCase()
                         })
-                        console.log($(el[0]));
                         $(el[0]).trigger("click");
                     }
                 }

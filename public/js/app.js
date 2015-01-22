@@ -16,7 +16,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/articles_new',
       controller: 'IndexCtrl'
     }).
-    when('/articles/:id', {
+      when('/about', {
+        templateUrl: 'partials/about'
+      }).
+    when('/article/:id', {
       templateUrl: 'partials/article_new',
       controller: 'ArticleCtrl'
     }).
