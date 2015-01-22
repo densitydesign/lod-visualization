@@ -40,7 +40,9 @@ angular.module('myApp.filters', [])
     })
     .filter('escape', function() {
             return function (text) {
+                if(text)
                 return text.replace(/_/g," ");
+                else return text;
             }
         })
 

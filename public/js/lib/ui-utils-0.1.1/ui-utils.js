@@ -100,14 +100,15 @@ angular.module('ui.format',[]).filter('format', function(){
  * @param search {string} needle to search for
  * @param [caseSensitive] {boolean} optional boolean to use case-sensitive searching
  */
-angular.module('ui.highlight',[]).filter('highlight', function () {
+angular.module('ui.highlight',[]).filter('highlight', function ($interpolate) {
   return function (text, search, caseSensitive) {
-    if (search || angular.isNumber(search)) {
+    if ((search || angular.isNumber(search)) && text) {
       text = text.toString();
+      console.log(search.join("|").replace(/_/g," "));
       if (caseSensitive) {
         return text.split(search).join('<span class="ui-match">' + search + '</span>');
       } else {
-        return text.replace(new RegExp('(' + search.join("|").replace("_"," ") + ')', 'gi'), '<span class="ui-match">$&</span>');
+        return text.replace(new RegExp('(' + search.join("|").replace(/_/g," ") + ')', 'gi'), '<span data-id="$&" class="ui-match">$&</span>');
       }
     } else {
       return text;

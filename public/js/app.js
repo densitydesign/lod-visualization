@@ -13,7 +13,7 @@ angular.module('myApp', [
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/articles', {
-      templateUrl: 'partials/articles',
+      templateUrl: 'partials/articles_new',
       controller: 'IndexCtrl'
     }).
     when('/articles/:id', {

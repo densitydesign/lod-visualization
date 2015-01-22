@@ -40,6 +40,8 @@ angular.module('myApp.controllers', [])
     $scope.cut = 0;
 
 
+    $scope.highlighted = null;
+
     $scope.graphRequest = {};
 
     $(".article-conteiner").height($(window).height());
@@ -106,6 +108,45 @@ angular.module('myApp.controllers', [])
                     console.log(data);
                 })
         }
+
+
+        $(".article-content").on("click",".ui-match",function(){
+            $scope.highlighted = $(this).attr("data-id").replace(/ /g,"_");
+            $scope.$apply();
+        })
+
+        $scope.$watch("highlighted", function(newValue,oldValue) {
+
+            if(newValue!== oldValue) {
+                if ($scope.selected !== newValue) {
+                    $scope.selected = newValue
+                    if(newValue != null) {
+                        var el = d3.select("svg").selectAll("circle").filter(function(d){
+
+                            return d.id.toLowerCase() === newValue.toLowerCase()
+                        })
+                        console.log($(el[0]));
+                        $(el[0]).trigger("click");
+                    }
+                }
+
+            }
+
+
+
+        })
+
+        $scope.$watch("selected", function(newValue,oldValue) {
+
+            if(newValue!== oldValue) {
+                if ($scope.highlighted !== newValue) {
+                    $scope.highlighted = newValue
+                }
+            }
+
+
+
+        })
 
         //$scope.allAssociations();
 

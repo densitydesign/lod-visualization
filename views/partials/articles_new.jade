@@ -1,0 +1,39 @@
+body
+    .top
+    .intro
+        .container(style="margin-top:0;padding-bottom:0")
+            .row
+                .col-md-8
+                    h1 DaCena
+                    h4.text-uppercase Project overview
+                    p
+                        | DaCENA (Data Context for News Articles) is a web application that showcases a new approach to reading online news articles with the support of a data context built from interlinked facts available in the Web of Data. Given a source article, a set of facts that are estimated to be more interesting for the readers are extracted from the Web and presented using tailored information visualization methods and an interactive user interface. By looking at these facts, the reader access background factual knowledge with the advantage of being supported in the interpretation of the news content and being suggested connections to related topics to further explore.
+
+                    a.back(href='about.html')
+                        h4.text-uppercase
+                            | Read more
+                            i.fa.fa-arrow-circle-right
+    .container.explore(style="margin-top:0;padding-bottom:100px")
+        .row
+            .col-md-12
+                h4.text-uppercase.explore-title Explore the articles
+        .row
+            .col-md-3(ng-repeat="article in articles")
+                a(href="/articles/{{article.id}}")
+                    .explore-article
+                        h1 {{ article.title | truncate:50 }}
+                        hr
+                        h5 By {{ article.author }}
+                        h4.text-uppercase {{ article.date }}
+                       // hr
+                        h4.text-uppercase {{ article.numMainInstances || "0"}} entities
+
+    .footer
+    // jQuery (necessary for Bootstrap's JavaScript plugins)
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    // Include all compiled plugins (below), or include individual files as needed
+    script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
+    script(type='text/javascript').
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
