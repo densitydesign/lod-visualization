@@ -108,7 +108,7 @@ angular.module('ui.highlight',[]).filter('highlight', function ($interpolate) {
       if (caseSensitive) {
         return text.split(search).join('<span class="ui-match">' + search + '</span>');
       } else {
-        return text.replace(new RegExp('(' + search.join("|").replace(/_/g," ") + ')', 'gi'), '<span data-id="$&" class="ui-match">$&</span>');
+        return text.replace(new RegExp('(' + search.join("|").toLowerCase().replace(/_/g," ") + ')', 'gi'), '<span data-id="$&" class="ui-match">$&</span>');
       }
     } else {
       return text;

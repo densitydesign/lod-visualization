@@ -89,7 +89,7 @@ exports.completeNetwork = function (req, res) {
     var data = req.body;
 
 
-    var urlstr = 'articles/' + data.id + '/associations';
+    var urlstr = 'articles/' + data.id + '/length/all/associations';
     request(
         {
             method: 'GET',
@@ -99,7 +99,48 @@ exports.completeNetwork = function (req, res) {
 
         function (error, response, body) {
 
-            var data = JSON.parse(body);
+            var obj = computePaths(body);
+            res.json(obj);
+        }
+    )
+}
+
+
+exports.associations = function (req, res) {
+
+    var data = req.body;
+    ///articles/{articleId}/associations/serendipity/relevance/{relevance}/rarity/{rarity}/top/{top}
+
+    var urlstr ='articles/' + data.id + '/length/all/associations/serendipity/relevance/' + parseInt(data.relevance*100) + '/rarity/' + parseInt(data.rarity*100);
+    if (data.top) urlstr += /top/ + data.top;
+
+    console.log(baseUrl + urlstr);
+
+    request(
+        {
+            method: 'GET',
+            url: baseUrl + urlstr,
+            headers: headers
+        },
+
+        function (error, response, body) {
+           
+            //console.log(body)
+            var obj = computePaths(body)
+            res.json(obj);
+        }
+    )
+};
+
+
+// Graph
+
+
+
+
+function computePaths(body)  {
+
+var data = JSON.parse(body);
 
             var nodes = [];
             var edges = [];
@@ -161,76 +202,7 @@ exports.completeNetwork = function (req, res) {
                 }
 
             }
-            res.json({original: data, terms: terms, edges: edges, nodes: nodes});
-        }
-    )
+
+            return {original: data, terms: terms, edges: edges, nodes: nodes}
+
 }
-
-
-exports.associations = function (req, res) {
-
-    var data = req.body;
-
-
-    var urlstr = data.all ? 'articles/' + data.id + '/associations/serendipity/all/relevance/' + data.relevance + '/rarity/' + data.rarity : 'articles/' + data.id + '/associations/serendipity/relevance/' + data.relevance + '/rarity/' + data.rarity;
-    if (data.top) urlstr += /top/ + data.top;
-
-    request(
-        {
-            method: 'GET',
-            url: baseUrl + urlstr,
-            headers: headers
-        },
-
-        function (error, response, body) {
-            var data = JSON.parse(body);
-            res.json(data);
-        }
-    )
-};
-
-
-// Graph
-
-exports.graph = function (req, res) {
-
-    var data = req.body;
-    console.log(data.degree)
-
-    request(
-        {
-            method: 'GET',
-            url: baseUrl + 'graph/article/' + data.article + '/source/' + data.source + '/target/' + data.target + '/degree/' + data.degree + '/metric/' + data.metric,
-            headers: headers
-        },
-
-        function (error, response, body) {
-            var data = JSON.parse(body);
-            res.json(data);
-        }
-    )
-
-};
-
-
-exports.search = function (req, res) {
-
-    var data = req.body;
-    data['api-key'] = articleSearchApiKey;
-
-    request(
-        {
-            method: 'GET',
-            url: 'http://api.nytimes.com/svc/search/v2/articlesearch.json',
-            headers: headers,
-            qs: data
-        },
-
-        function (error, response, body) {
-            var data = JSON.parse(body);
-            if (data.status == "OK")
-                res.json(data.response.docs);
-            else res.json({error: 'Error'})
-        }
-    )
-};

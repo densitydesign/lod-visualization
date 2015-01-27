@@ -4,147 +4,7 @@
 
 angular.module('myApp.directives', [])
 
-    .directive('simpleGraph', function () {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
 
-                var chart = d3.linked()
-                    .height(400)
-                    .width(element.width())
-
-                function update() {
-
-                    d3.select(element[0])
-                        .datum(angular.copy(scope.graph))
-                        .call(chart)
-                }
-
-                scope.$watch('graph', function (graph) {
-                    if (!graph) return;
-                    update();
-                })
-
-                function onResize(e, ui) {
-                    chart.height(ui.element.height());
-                    update();
-                }
-
-                var timer;
-
-                element.parent().bind('resize', function (e, ui) {
-                    timer && clearTimeout(timer);
-                    timer = setTimeout(function () {
-                        onResize(e, ui);
-                    }, 0);
-                });
-
-            }
-        }
-    })
-
-    .directive('routeGraph', function () {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-
-                var chart = d3.route()
-                    .height(400)
-                    .width(element.width())
-
-                function update() {
-
-                    d3.select(element[0])
-                        .datum(angular.copy(scope.graph))
-                        .call(chart)
-                }
-
-                scope.$watch('graph', function (graph, oldGraph) {
-                    if (!graph) return;
-                    if (graph != oldGraph) chart.resetZoom();
-                    update();
-                })
-
-                function onResize(e, ui) {
-                    chart.height(ui.element.height());
-                    update();
-                }
-
-                var timer;
-
-                element.parent().bind('resize', function (e, ui) {
-                    timer && clearTimeout(timer);
-                    timer = setTimeout(function () {
-                        onResize(e, ui);
-                    }, 0);
-                });
-
-            }
-        }
-    })
-
-
-    .directive('resizable', function () {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-
-                attrs.handles = attrs.handles || "e, s, se";
-                attrs.options = attrs.options || {};
-
-                var options = {
-
-                    handles: attrs.handles,
-
-                    resize: function (event, ui) {
-                        ui.element.css("position", "fixed");
-                        ui.element.css("bottom", "0px");
-                        ui.element.css("top", "");
-                    }
-                }
-
-                options = angular.extend(options, attrs.options);
-                $(element).resizable(options)
-
-            }
-        }
-    })
-
-    .directive('bslider', function () {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-
-                attrs.min = +attrs.min || 1;
-                attrs.max = +attrs.max || 5
-                attrs.step = +attrs.step || 1;
-                attrs.value = +scope[attrs.model] || +attrs.value || 1;
-                attrs.orientation = attrs.orientation || "horizontal";
-                attrs.selection = attrs.selection || "after";
-                attrs.tooltip = attrs.tooltip || "show";
-                attrs.options = attrs.options || {};
-
-                var options = {
-                    'min': attrs.min,
-                    'max': attrs.max,
-                    'value': attrs.value,
-                    'step': attrs.step,
-                    'orientation': attrs.orientation,
-                    'selection': attrs.selection,
-                    'tooltip': attrs.tooltip
-                }
-
-                options = angular.extend(options, attrs.options);
-
-                var slider = $(element).slider(options)
-                    .on('slideStop', function (event) {
-                        scope[attrs.model] = event.value;
-                        scope.$apply();
-                    })
-
-            }
-        }
-    })
     .directive('dnetwork', function(apiService, $rootScope) {
         return {
             restrict: 'E',
@@ -164,7 +24,7 @@ angular.module('myApp.directives', [])
                     container = d3.select(element[0]);
 
                 var w = $("#tab_default_1").innerWidth();
-                var h = $(window).height()-$(".nav-tabs").innerHeight();
+                var h = $(window).height()-$(".controls").height()*2.5;
 
                 if(container.select("svg").empty()) {
                     container.append("svg").attr("width",w).attr("height",h);
@@ -178,11 +38,26 @@ angular.module('myApp.directives', [])
                         if(scope.clicked) {
                             deselect(true);
                         }
-
                     })
                     .call(d3.behavior.zoom().on("zoom", redraw))
                     .append("g")
 
+
+
+                     svg.append("defs").append("marker")
+                            .attr("id", "arrow")
+                            .attr("viewBox", "0 -5 10 10")
+                            .attr("refX", 15)
+                            .attr("refY", -1.5)
+                            .attr("markerWidth", 6)
+                            .attr("markerHeight", 6)
+                            .attr("orient", "auto")
+                            .append("path")
+                            .attr("d", "M0,-5L10,0L0,5");
+
+                    var gpath = svg.append("g").attr("class","paths");
+                    var gcircle = svg.append("g").attr("class","circles");
+                    var gtext = svg.append("g").attr("class","texts");
 
                 scope.netReq = {
                     id:scope.articleId
@@ -190,9 +65,12 @@ angular.module('myApp.directives', [])
 
                 apiService.completeNetwork(scope.netReq)
                     .done(function (data) {
+                        scope.drawNet(data);
+                    })
 
-                        console.log(data);
-                        scope.clicked = false;
+                scope.drawNet = function(data) {
+
+                    scope.clicked = false;
                         scope.terms=data.terms;
                         scope.$apply();
                         //$rootScope.$broadcast("terms",)
@@ -231,27 +109,26 @@ angular.module('myApp.directives', [])
 
 
                         // Per-type markers, as they don't inherit styles.
-                        svg.append("defs").append("marker")
-                            .attr("id", "arrow")
-                            .attr("viewBox", "0 -5 10 10")
-                            .attr("refX", 15)
-                            .attr("refY", -1.5)
-                            .attr("markerWidth", 6)
-                            .attr("markerHeight", 6)
-                            .attr("orient", "auto")
-                            .append("path")
-                            .attr("d", "M0,-5L10,0L0,5");
+                       
 
 
-                        var path = svg.append("g").selectAll("path")
-                            .data(force.links(),function(d) { return d.source.id + "-" + d.target.id; })
-                            .enter().append("path")
+                        var path = gpath.selectAll("path")
+                            .data(force.links(),function(d) { return d.source.id + "-" + d.target.id; });
+
+
+                           
+
+                            path.enter().append("path");
                            // .attr("class", function(d) { return "link " + d.type; })
                            // .style("marker-end", "url(#arrow)");
 
-                        var circle = svg.append("g").selectAll("circle")
-                            .data(force.nodes(),function(d) { return d.id;})
-                            .enter().append("circle")
+                            path.exit().remove();
+
+                        var circle = gcircle.selectAll("circle")
+                            .data(force.nodes(),function(d) { return d.id;});
+
+                          
+                            circle.enter().append("circle")
                             .attr("r", 6)
 
                             .style("fill",function(d){
@@ -290,11 +167,18 @@ angular.module('myApp.directives', [])
                                 }
                             });
 
+                            circle.exit().remove();
+
+                             circle.filter(function(d){
+                                return d.id === scope.terms[0]
+                            })
+                             .attr("r",12);
+
                             circle.filter(function(d){
                                 return d.id !== scope.terms[0] && scope.terms.indexOf(d.id)>-1
                             })
                             .on("click",function(d){
-                                console.log("click me!",d);
+                                
                                 if(!scope.clicked) {
                                     d3.event.stopPropagation();
                                     scope.clicked = true;
@@ -329,15 +213,27 @@ angular.module('myApp.directives', [])
                             })
 
 
-                        var text = svg.append("g").selectAll("text")
-                            .data(force.nodes(),function(d) { return d.id;})
-                            .enter().append("text")
-                            .attr("x", function(d) {
+                        var text = gtext.selectAll("text")
+                            .data(force.nodes(),function(d) { return d.id;});
+
+                            text.exit().remove();
+
+
+                            text.enter().append("text")
+                            .text(function(d) { return d.label.replace(/_/g," "); });
+
+                            text.attr("x", function(d) {
                                 if (scope.terms.indexOf(d.id) > -1) return 8;
                                 else return 10000;
                             })
                             .attr("y", ".31em")
-                            .text(function(d) { return d.label.replace(/_/g," "); });
+
+
+                             text.filter(function(d){
+                                return d.id === scope.terms[0]
+                            })
+                             .attr("x",12);
+                            
 
 // Use elliptical arc path segments to doubly-encode directionality.
                         function tick() {
@@ -356,8 +252,7 @@ angular.module('myApp.directives', [])
                         function transform(d) {
                             return "translate(" + d.x + "," + d.y + ")";
                         }
-
-                    })
+                }    
 
                 function deselect(unclick) {
 
@@ -417,44 +312,6 @@ angular.module('myApp.directives', [])
                     chart = d3.select(sigmaContainer);
 
                     var network = dacena.graph()
-                        /*.on('filtered', function (d) {
-
-                            if (!d.nodeID) {
-                                scope.selected = undefined;
-                                scope.isCollapsed = true;
-                                if (!scope.$$phase) {
-                                    scope.$apply();
-                                }
-                            } else {
-
-                                scope.selectedNode = d.nodes.filter(function (d) {
-                                    return d.selected;
-                                })[0];
-
-                                network.centerView(scope.selectedNode);
-
-                                scope.attrs = d3.entries(scope.selectedNode.attributes);
-
-                                scope.linkedNodes = d.nodes.filter(function (d) {
-                                    return !d.selected;
-                                });
-
-                                scope.edges = edgesDirection(d.nodeID, d.edges);
-
-
-                                scope.isCollapsed = false;
-
-                                if (!scope.$$phase) {
-                                    scope.$apply();
-                                }
-                            }
-
-                        });*/
-
-
-                //scope.indexes = JSON.parse(attrs.directiveData);
-                //scope.index = scope.indexes[0];
-
 
                 scope.updateNetwork = function (d) {
                     chart.call(network.setSelectedNode(d.id));

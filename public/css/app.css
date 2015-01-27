@@ -6,6 +6,7 @@
 body, html {
   font-family: 'Lato', Helvetica, Arial, sans-serif;
     height:100%;
+   
 
 }
 
@@ -575,4 +576,32 @@ text {
 .top{
     height: 10px;
     background-color: #333;
+}
+.highlight{
+  background:#ffe632;
+}
+
+.article-big{
+  height:100%;
+  overflow:hidden;
+}
+
+.cut{
+  display: block;
+}
+.cut{
+  clear:left;
+}
+.btn-complete{
+  padding:10px;
+  cursor:pointer;
+  margin-top:15px;
+  background:#f3f3f3;
+  width: auto;
+}
+.help {
+  display: inline-block;
+}
+label{
+
 }
