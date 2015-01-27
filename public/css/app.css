@@ -409,8 +409,8 @@ a:hover{
     background: #ffe632;
 }
 
-.main{
-
+.ui-match{
+  cursor:pointer;
 }
 
 .article-container{

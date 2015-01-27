@@ -111,7 +111,7 @@ exports.associations = function (req, res) {
     var data = req.body;
     ///articles/{articleId}/associations/serendipity/relevance/{relevance}/rarity/{rarity}/top/{top}
 
-    var urlstr ='articles/' + data.id + '/length/all/associations/serendipity/relevance/' + parseInt(data.relevance*100) + '/rarity/' + parseInt(data.rarity*100);
+    var urlstr ='articles/' + data.id + '/associations/serendipity/all/relevance/' + parseInt(data.relevance*100) + '/rarity/' + parseInt(data.rarity*100);
     if (data.top) urlstr += /top/ + data.top;
 
     console.log(baseUrl + urlstr);
