@@ -6,6 +6,15 @@ angular.module('myApp.controllers', [])
 
   .controller('MainCtrl', function ($scope, $http) {
 
+      jQuery.fn.d3Click = function () {
+  this.each(function (i, e) {
+    var evt = document.createEvent("MouseEvents");
+    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+
+    e.dispatchEvent(evt);
+  });
+};
+
     $scope.title = "DaCena";
     $scope.prev = null;
     $scope.next = null;
@@ -128,7 +137,10 @@ angular.module('myApp.controllers', [])
 
                             return d.id.toLowerCase() === newValue.toLowerCase()
                         })
-                        $(el[0]).trigger("click");
+
+                        console.log(el[0]);
+                        $("svg").d3Click();
+                        $(el[0]).d3Click();
                     }
                 }
 
@@ -178,6 +190,8 @@ angular.module('myApp.controllers', [])
   })
 
   .controller('SampleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {
+
+  
 
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;

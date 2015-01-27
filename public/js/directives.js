@@ -294,6 +294,7 @@ angular.module('myApp.directives', [])
                                 return d.id !== scope.terms[0] && scope.terms.indexOf(d.id)>-1
                             })
                             .on("click",function(d){
+                                console.log("click me!",d);
                                 if(!scope.clicked) {
                                     d3.event.stopPropagation();
                                     scope.clicked = true;
