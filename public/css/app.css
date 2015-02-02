@@ -537,6 +537,7 @@ a:hover{
 
 .article-conteiner{
     overflow-y: auto;
+    border-right: 1px solid #e7e7e7;
 }
 text {
     font-family: "Roboto";

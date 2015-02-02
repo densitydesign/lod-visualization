@@ -47,10 +47,10 @@ angular.module('myApp.controllers', [])
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;
     $scope.degree = 2;
-    $scope.relevance = 1;
-    $scope.rarity = 0;
-    $scope.cut = 0;
-    $scope.serendipity = 0;
+    $scope.relevance = 0.5;
+    $scope.rarity = 0.5;
+    $scope.cut = 100;
+    $scope.serendipity = 50;
 
 
     $scope.highlighted = null;
@@ -230,11 +230,15 @@ angular.module('myApp.controllers', [])
 
       $scope.$watch("cut",function(newValue,oldValue){
       
-      if (newValue!=oldValue && newValue !== null) {
-        
+      if (newValue!=oldValue && newValue !== null && newValue <1) {
+
+          $scope.cut = 1;
+
+      }
+          else {
 
 
-        var cut = newValue == 0 ? 100 : newValue;
+        var cut = newValue;
 
          var netreq = {
           id:$scope.articleId,

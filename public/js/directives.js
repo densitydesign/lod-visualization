@@ -59,14 +59,18 @@ angular.module('myApp.directives', [])
                     var gcircle = svg.append("g").attr("class","circles");
                     var gtext = svg.append("g").attr("class","texts");
 
-                scope.netReq = {
-                    id:scope.articleId
-                };
+                var netreq = {
+                    id:scope.articleId,
+                    relevance : scope.relevance,
+                    rarity : scope.rarity,
+                    top : scope.cut
+                }
 
-                apiService.completeNetwork(scope.netReq)
-                    .done(function (data) {
-                        scope.drawNet(data);
-                    })
+                apiService.associations(netreq).done(function (data) {
+
+                    scope.drawNet(data);
+
+                });
 
                 scope.drawNet = function(data) {
 
