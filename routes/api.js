@@ -42,9 +42,9 @@ exports.article = function (req, res) {
             url: baseUrl + 'articles/' + data.id,
             headers: headers
         },
-
         function (error, response, body) {
             var data = JSON.parse(body);
+            console.log(data);
             res.json(data);
         }
     )
@@ -87,8 +87,6 @@ exports.allAssociations = function (req, res) {
 // Graph
 exports.completeNetwork = function (req, res) {
     var data = req.body;
-
-
     var urlstr = 'articles/' + data.id + '/length/all/associations';
     request(
         {
@@ -134,9 +132,6 @@ exports.associations = function (req, res) {
 
 
 // Graph
-
-
-
 
 function computePaths(body)  {
 

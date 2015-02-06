@@ -606,3 +606,13 @@ text {
 label{
 
 }
+
+.nopaths{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    text-align: center;
+    width: 75%;
+    color: #ddd;
+    font-size: 2em;
+}

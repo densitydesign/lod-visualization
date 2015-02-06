@@ -247,25 +247,30 @@ angular.module('myApp.directives', [])
                                 text.style("opacity", 0);
 
                                 var pf = pathFinder(data.original.associations, scope.selected);
-                                var names = pf.names;
-                                //scope.selected = d.id;
-                                scope.paths = pf.paths;
+                                if (pf !== null) {
+                                    var names = pf.names;
+                                    //scope.selected = d.id;
+                                    scope.paths = pf.paths;
+                                    scope.$apply();
+                                    path.filter(function (e) {
+                                        return names.indexOf(e.target.id) > -1 && names.indexOf(e.source.id) > -1
+                                    })
+                                        .style("opacity", 1);
+
+                                    circle.filter(function (e) {
+                                        return names.indexOf(e.id) > -1
+                                    })
+                                        .style("opacity", 1);
+
+                                    text.filter(function (e) {
+                                        return names.indexOf(e.id) > -1
+                                    })
+                                        .attr("x", 8)
+                                        .style("opacity", 1);
+
+                                }
+                                else scope.paths = [];
                                 scope.$apply();
-                                path.filter(function (e) {
-                                    return names.indexOf(e.target.id) > -1 && names.indexOf(e.source.id) > -1
-                                })
-                                    .style("opacity", 1);
-
-                                circle.filter(function (e) {
-                                    return names.indexOf(e.id) > -1
-                                })
-                                    .style("opacity", 1);
-
-                                text.filter(function (e) {
-                                    return names.indexOf(e.id) > -1
-                                })
-                                    .attr("x",8)
-                                    .style("opacity", 1);
 
 
                             }
@@ -288,7 +293,7 @@ angular.module('myApp.directives', [])
                         function transform(d) {
                             return "translate(" + d.x + "," + d.y + ")";
                         }
-                }    
+                }
 
                 function deselect(unclick) {
 
@@ -315,12 +320,17 @@ angular.module('myApp.directives', [])
                              tot = tot.concat(paths[k]);
                          }
 
+
+
                          var newTot = tot.filter(function(d){
                              var l = d.steps.length-1;
                              var n = d.steps[l].destination;
                              //console.log(n,name,n===name);
                              return n === name;
                          })
+
+                         if(!newTot.length) return null;
+
 
                          res.push(newTot[0].source);
                          newTot.forEach(function(e,j){

@@ -53,11 +53,14 @@
 
                             #tab_default_2.tab-pane
 
-            .col-md-9.paths(ng-show="selected")
+            .col-md-9.paths(ng-show="selected && paths.length")
                 div.path-line(ng-repeat="path in paths")
                     i.term {{terms[0] | escape}}
                     span(ng-repeat="step in path.steps")
                         i.fa.fa-chevron-left(ng-show="dirLeft(step.property)")
                         |{{step.property | cutprop}}
                         i.fa.fa-chevron-right(ng-show="!dirLeft(step.property)")
-                        i(ng-class='{"term":terms.indexOf(step.destination)>-1}') {{ step.destination | escape}}
+                        i(class="pop-over",data-id="{{step.destination}}", data-original-title="default value",data-placement="top",ng-class='{"term":terms.indexOf(step.destination)>-1}') {{ step.destination | escape}}
+
+            .col-md-9.nopaths(ng-show="selected && !paths.length")
+                span No connection for the specified parameters
