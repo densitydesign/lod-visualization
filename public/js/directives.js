@@ -292,6 +292,8 @@ angular.module('myApp.directives', [])
 
                 function deselect(unclick) {
 
+                    if (d3.event.defaultPrevented) return;
+
                     if(unclick) {
                         scope.clicked = false;
                         scope.selected = null;
