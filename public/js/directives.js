@@ -74,7 +74,7 @@ angular.module('myApp.directives', [])
 
                 scope.drawNet = function(data) {
 
-                    scope.clicked = false;
+                    //scope.clicked = false;
                         scope.terms=data.terms;
                         scope.$apply();
                         //$rootScope.$broadcast("terms",)
@@ -237,6 +237,38 @@ angular.module('myApp.directives', [])
                                 return d.id === scope.terms[0]
                             })
                              .attr("x",12);
+
+
+
+                            if(scope.selected) {
+
+                                path.style("opacity", 0);
+                                circle.style("opacity", 0);
+                                text.style("opacity", 0);
+
+                                var pf = pathFinder(data.original.associations, scope.selected);
+                                var names = pf.names;
+                                //scope.selected = d.id;
+                                scope.paths = pf.paths;
+                                scope.$apply();
+                                path.filter(function (e) {
+                                    return names.indexOf(e.target.id) > -1 && names.indexOf(e.source.id) > -1
+                                })
+                                    .style("opacity", 1);
+
+                                circle.filter(function (e) {
+                                    return names.indexOf(e.id) > -1
+                                })
+                                    .style("opacity", 1);
+
+                                text.filter(function (e) {
+                                    return names.indexOf(e.id) > -1
+                                })
+                                    .attr("x",8)
+                                    .style("opacity", 1);
+
+
+                            }
                             
 
 // Use elliptical arc path segments to doubly-encode directionality.

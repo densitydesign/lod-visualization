@@ -22,14 +22,6 @@ angular.module('myApp.controllers', [])
 
   .controller('IndexCtrl', function ($scope, $http, $injector, apiService) {
 
-    /*$scope.query = 'Obama';
-    $scope.search = function(){
-      apiService.search( { q : $scope.query } )
-        .done(function(data){
-          $scope.articles = data;
-          $scope.$apply();
-        })
-    }*/
 
         console.log("ad!!");
 
@@ -132,7 +124,7 @@ angular.module('myApp.controllers', [])
 
             if(newValue!== oldValue) {
               d3.selectAll(".highlight").classed("highlight", false);
-              console.log("here",newValue);
+              //console.log("here",newValue);
 
                       $('.ui-match').filter(function() {
                           
@@ -164,31 +156,6 @@ angular.module('myApp.controllers', [])
             }
         })
 
-        //$scope.allAssociations();
-
-        /*$scope.createGraph = function(target){
-          if (!target) return;
-          $scope.graphRequest = {
-            article : $scope.articleId,
-            degree : $scope.degree
-          }
-
-          $scope.graphRequest.target = target;
-          $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
-          $scope.graphRequest.metric = $scope.metric;
-
-          apiService.graph($scope.graphRequest)
-          .done(function (data){
-            $scope.graph = data;
-            $scope.openGraph = true;
-            $scope.$apply();
-          })
-        }*/
-
-    /*$scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
-
-    $scope.$watch('metric', function(){ $scope.createGraph($scope.graphRequest.target); })
-*/
 
     $scope.$watch("serendipity",_.debounce(function(newValue,oldValue){
       
@@ -207,7 +174,7 @@ angular.module('myApp.controllers', [])
         }
 
         apiService.associations(netreq).done(function (data) {
-           $("svg").d3Click();
+           //$("svg").d3Click();
           $scope.drawNet(data);
 
         });
@@ -231,9 +198,7 @@ angular.module('myApp.controllers', [])
       $scope.$watch("cut",function(newValue,oldValue){
       
       if (newValue!=oldValue && newValue !== null && newValue <1) {
-
           $scope.cut = 1;
-
       }
           else {
 
@@ -248,7 +213,7 @@ angular.module('myApp.controllers', [])
         }
 
         apiService.associations(netreq).done(function (data) {
-           $("svg").d3Click();
+           //$("svg").d3Click();
           $scope.drawNet(data);
 
         });
@@ -258,43 +223,3 @@ angular.module('myApp.controllers', [])
     })
   })
 
-  /*.controller('SampleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {
-
-  
-
-    $scope.articleId = $routeParams.id;
-    $scope.openGraph = false;
-    $scope.degree = 2;
-
-    $scope.graphRequest = {};
-
-    $scope.controls = false;
-
-    apiService.sampleFile('../data/article.json')
-      .done(function (data){
-        $scope.article = data;
-        $scope.$apply();
-      })
-
-    $scope.createGraph = function(target){
-      if (!target) return;
-      $scope.graphRequest = {
-        article : $scope.articleId,
-        degree : $scope.degree
-      }
-
-      $scope.graphRequest.target = target;
-      $scope.graphRequest.source = $scope.article.mainInstances.filter(function(i){ return i.isPrimary; })[0].instance.id;
-
-      apiService.sampleFile('data/graph.json')
-      .done(function (data){
-        $scope.graph = data;
-        $scope.openGraph = true;
-        $scope.$apply();
-      })
-    }
-
-    $scope.$watch('degree', function(){ $scope.createGraph($scope.graphRequest.target); })
-
-  })
-*/
