@@ -545,7 +545,7 @@ text {
 .paths {
     position: absolute;
     background: white;
-    border-top: 1px solid black;
+    border-top: 1px solid #e7e7e7;
     bottom: 0;
     right: 0;
     padding: 5px;
@@ -615,4 +615,14 @@ label{
     width: 75%;
     color: #ddd;
     font-size: 2em;
+}
+
+.btn-group .btn-primary{
+    background-color:#f3f3f3;
+    color:black;
+    border:1px solid white;
+    border-radius:0;
+}
+.btn.active{
+    box-shadow: inset 0px 3px 0px rgba(0,0,0,.125);
 }

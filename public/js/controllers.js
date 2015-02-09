@@ -44,6 +44,14 @@ angular.module('myApp.controllers', [])
     $scope.cut = 100;
     $scope.serendipity = 50;
 
+        $scope.checkModel = {
+            one: true,
+            two: true,
+            three: true
+        };
+
+        $scope.pathslen = [1,2,3];
+
 
     $scope.highlighted = null;
 
@@ -118,6 +126,15 @@ angular.module('myApp.controllers', [])
         $(".article-content").on("click",".ui-match",function(){
             $scope.highlighted = $(this).attr("data-id").replace(/ /g,"_");
             $scope.$apply();
+
+            var netreq = {
+                action:'text',
+                article : $routeParams.id
+            }
+
+            apiService.click(netreq).done(function () {
+                console.log("done click report")
+            });
         })
 
         $scope.$watch("highlighted", function(newValue,oldValue) {
@@ -164,7 +181,7 @@ angular.module('myApp.controllers', [])
         $scope.relevance = toOne;
         $scope.rarity = 1-toOne;
 
-        var cut = $scope.cut == 0 ? 100 : $scope.cut;
+       /* var cut = $scope.cut == 0 ? 100 : $scope.cut;
         //call api
         var netreq = {
           id:$scope.articleId,
@@ -177,7 +194,9 @@ angular.module('myApp.controllers', [])
            //$("svg").d3Click();
           $scope.drawNet(data);
 
-        });
+        });*/
+
+          $scope.callAssociations();
 
       }
     },500))
@@ -201,25 +220,64 @@ angular.module('myApp.controllers', [])
           $scope.cut = 1;
       }
           else {
-
-
-        var cut = newValue;
-
-         var netreq = {
-          id:$scope.articleId,
-          relevance : $scope.relevance,
-          rarity : $scope.rarity,
-          top : cut
-        }
-
-        apiService.associations(netreq).done(function (data) {
-           //$("svg").d3Click();
-          $scope.drawNet(data);
-
-        });
-
+          $scope.callAssociations();
       }
 
     })
+
+
+        $scope.callAssociations = function() {
+
+
+            var netreq = {
+                id:$scope.articleId,
+                relevance : $scope.relevance,
+                rarity : $scope.rarity,
+                top : $scope.cut,
+                paths : $scope.pathslen
+            }
+
+            apiService.associations(netreq).done(function (data) {
+                //$("svg").d3Click();
+                $scope.drawNet(data);
+            });
+        }
+
+        $scope.$watch("checkModel",function(newValue,oldValue){
+
+            var in1 = $scope.pathslen.indexOf(1);
+            var in2 = $scope.pathslen.indexOf(2);
+            var in3 = $scope.pathslen.indexOf(3);
+
+
+            if(newValue.one)
+            {
+                if(in1<0)  $scope.pathslen.push(1);
+            }
+            else {
+                if(in1>=0)  $scope.pathslen.splice(in1,1);
+            }
+
+            if(newValue.two)
+            {
+                if(in2<0)  $scope.pathslen.push(2);
+            }
+            else {
+                if(in2>=0)   $scope.pathslen.splice(in2,1);
+            }
+
+            if(newValue.three)
+            {
+                if(in3<0)  $scope.pathslen.push(3);
+            }
+            else {
+                if(in3>=0) $scope.pathslen.splice(in3,1);
+            }
+
+            $scope.callAssociations();
+
+        },true)
+
+
   })
 

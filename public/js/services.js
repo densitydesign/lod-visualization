@@ -69,6 +69,25 @@ angular.module('myApp.services', [])
               })
           },
 
+          click : function(request){
+              return $.ajax({
+                  type : 'POST',
+                  data : JSON.stringify(request),
+                  dataType : 'json',
+                  contentType: 'application/json',
+                  url: 'api/click'
+              })
+          },
+          abstract : function(request){
+              return $.ajax({
+                  type : 'POST',
+                  data : JSON.stringify(request),
+                  dataType : 'json',
+                  contentType: 'application/json',
+                  url: 'api/abstract'
+              })
+          },
+
 	    sampleFile : function(url){
 	    	return $.ajax({
 	      	dataType : 'json',

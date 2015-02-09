@@ -42,7 +42,14 @@
                                         i.fa.fa-question-circle(data-toggle='tooltip', data-placement='right', title='Description of this setting')
                                     
                                     input(class="cut", type='number', ng-model='cut', min='0', max='100')
-                                .col-md-4    
+
+                                .col-md-3
+                                    label(style="display:block") Path length
+                                    .btn-group.help
+                                        label.btn.btn-primary(ng-model="checkModel.one", btn-checkbox) 1
+                                        label.btn.btn-primary(ng-model="checkModel.two", btn-checkbox) 2
+                                        label.btn.btn-primary(ng-model="checkModel.three", btn-checkbox) 3
+                                .col-md-3
                                     div(ng-click="complete()", class="text-center btn-complete") Show the complete network
                                     
 

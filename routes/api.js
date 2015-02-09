@@ -52,6 +52,21 @@ exports.article = function (req, res) {
 };
 
 
+exports.click = function (req,res) {
+
+    var data = req.body;
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    var url =  baseUrl+ 'action_log';
+
+    request.post({url:url, ip:ip, article_id : parseInt(data.article), action: data.action}, function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('post failed:', err);
+        }
+        console.log('Server responded with:', body);
+    });
+}
+
+
 // Graph
 exports.allAssociations = function (req, res) {
     var data = req.body;
@@ -104,15 +119,40 @@ exports.completeNetwork = function (req, res) {
 }
 
 
+exports.abstract = function(req,res) {
+
+    var data = req.body;
+
+    var url = baseUrl + "abstract/dbpedia/entity/"+data.entity
+
+    request(
+        {
+            method: 'GET',
+            url:url,
+            headers: headers
+        },
+
+        function (error, response, body) {
+
+            var obj = JSON.parse(body);
+            res.json(obj);
+        }
+    )
+
+
+}
+
 exports.associations = function (req, res) {
 
     var data = req.body;
     ///articles/{articleId}/associations/serendipity/relevance/{relevance}/rarity/{rarity}/top/{top}
 
+    var pathsArr = 'paths' in data ? data.paths : [1,2,3];
+
     var urlstr ='articles/' + data.id + '/associations/serendipity/all/relevance/' + parseInt(data.relevance*100) + '/rarity/' + parseInt(data.rarity*100);
     if (data.top) urlstr += /top/ + data.top;
 
-    console.log(baseUrl + urlstr);
+   // console.log(baseUrl + urlstr);
 
     request(
         {
@@ -124,7 +164,7 @@ exports.associations = function (req, res) {
         function (error, response, body) {
            
             //console.log(body)
-            var obj = computePaths(body)
+            var obj = computePaths(pathsArr,body)
             res.json(obj);
         }
     )
@@ -133,7 +173,10 @@ exports.associations = function (req, res) {
 
 // Graph
 
-function computePaths(body)  {
+function computePaths(paths,body)  {
+
+
+
 
 var data = JSON.parse(body);
 
@@ -184,15 +227,21 @@ var data = JSON.parse(body);
 
                     data.associations[k].forEach(function (e) {
 
-                        var source = e.source;
-                        if(terms.indexOf(source)==-1) terms.push(source);
 
-                        e.steps.forEach(function (f, j) {
+                        if(paths.indexOf(e.steps.length)>-1) {
 
-                            if (j == e.steps.length - 1 && terms.indexOf(f.destination) == -1) terms.push(f.destination);
-                            computeEdges(f, source);
-                            source = f.destination;
-                        })
+                            console.log(e);
+
+                            var source = e.source;
+                            if (terms.indexOf(source) == -1) terms.push(source);
+
+                            e.steps.forEach(function (f, j) {
+
+                                if (j == e.steps.length - 1 && terms.indexOf(f.destination) == -1) terms.push(f.destination);
+                                computeEdges(f, source);
+                                source = f.destination;
+                            })
+                        }
                     })
                 }
 

@@ -5,7 +5,7 @@
 angular.module('myApp.directives', [])
 
 
-    .directive('dnetwork', function(apiService, $rootScope) {
+    .directive('dnetwork', function(apiService, $routeParams, $rootScope) {
         return {
             restrict: 'E',
             replace: false,
@@ -99,14 +99,20 @@ angular.module('myApp.directives', [])
 
                         });
 
+
+                        data.nodes.forEach(function(d,i){
+                            d.x = Math.random()*w;
+                            d.y= Math.random()*h;
+                        })
+
                         var force = d3.layout.force()
                             .nodes(data.nodes)
                             .links(edges)
                             .size([width, height])
                             .linkDistance(70)
-                            .charge(-350)
+                            .charge(-200)
                             .gravity(0.2)
-                            .friction(0.9)
+                            .friction(0.8)
                             .on("tick", tick)
                             .start();
 
@@ -186,6 +192,15 @@ angular.module('myApp.directives', [])
                                 if(!scope.clicked) {
                                     d3.event.stopPropagation();
                                     scope.clicked = true;
+
+                                    var netreq = {
+                                       action:'graph',
+                                        article : $routeParams.id
+                                    }
+
+                                    apiService.click(netreq).done(function () {
+                                        console.log("done click report")
+                                    });
 
                                     path.style("opacity", 0);
                                     circle.style("opacity", 0);
@@ -469,6 +484,27 @@ angular.module('myApp.directives', [])
 
             }
         };
+    })
+    .directive('popOver', function(apiService) {
+        return {
+            restrict: 'C',
+            link: function(scope, element, attr) {
+
+                element.tooltip();
+                $(element).bind('mouseover',function(e) {
+
+
+                    var myid = $(this).attr("data-id")
+
+                    var netreq = {entity:myid}
+                    apiService.abstract(netreq).done(function (data) {
+                        attr.$set('originalTitle', data.abstract);
+                        element.tooltip('show');
+                    })
+                });
+
+            }
+        }
     });
         
  

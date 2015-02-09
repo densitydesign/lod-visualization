@@ -9,6 +9,7 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'ui.utils',
+    'ui.bootstrap',
   'ui.bootstrap-slider'
 ]).
 config(function ($routeProvider, $locationProvider) {
