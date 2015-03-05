@@ -86,14 +86,6 @@ angular.module('myApp.services', [])
                   contentType: 'application/json',
                   url: 'api/abstract'
               })
-          },
-
-	    sampleFile : function(url){
-	    	return $.ajax({
-	      	dataType : 'json',
-	      	url: url
-	    	})
-	    }
-
+          }
 		}
 	});

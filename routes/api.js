@@ -44,7 +44,7 @@ exports.article = function (req, res) {
         },
         function (error, response, body) {
             var data = JSON.parse(body);
-            console.log(data);
+
             res.json(data);
         }
     )
@@ -124,6 +124,12 @@ exports.abstract = function(req,res) {
     var data = req.body;
 
     var url = baseUrl + "abstract/dbpedia/entity/"+data.entity
+    res.header("Content-Type", "application/json; charset=utf-8");
+
+    headers = {
+        "Content-Type":"application/json; charset=utf-8"
+    };
+
 
     request(
         {
@@ -136,6 +142,7 @@ exports.abstract = function(req,res) {
 
             var obj = JSON.parse(body);
             res.json(obj);
+            console.log(obj);
         }
     )
 
@@ -148,6 +155,8 @@ exports.associations = function (req, res) {
     ///articles/{articleId}/associations/serendipity/relevance/{relevance}/rarity/{rarity}/top/{top}
 
     var pathsArr = 'paths' in data ? data.paths : [1,2,3];
+
+    pathsArr.sort();
 
     var urlstr ='articles/' + data.id + '/associations/serendipity/all/relevance/' + parseInt(data.relevance*100) + '/rarity/' + parseInt(data.rarity*100);
     if (data.top) urlstr += /top/ + data.top;

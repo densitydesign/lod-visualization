@@ -254,6 +254,8 @@ p{
 
 h1{
     width: 100%;
+    clear: both;
+    margin-top: 50px;
     font-family: 'Playfair Display', serif;
     font-size: 2.6em;
     font-weight: 700;
@@ -552,18 +554,26 @@ text {
     height: 200px;
     overflow-y: auto;
 }
-.paths i {
+.pathrep span{
     text-decoration: none;
     padding:0px 5px;
     background-color:#ddd;
     display: inline-block;
     margin: 0 3px;
 }
-.paths i.fa {
+
+.pathrep i{
+    padding: 0 5px;
+    
+}
+
+.pathrep i.fa {
     background-color: transparent;
 }
 .term{
     background-color: #FFF7BC !important;
+    margin-right: 5px;
+    padding: 0px 5px;
 }
 .path-line{
     margin-bottom: 3px;
@@ -588,10 +598,18 @@ text {
 }
 
 .cut{
-  display: block;
+    display: block;
+    width: 50%;
+    float: left;
+    font-size: 0.9em;
+    min-width: 40px;
+    margin-right:4px;
 }
 .cut{
   clear:left;
+}
+.cut.ng-invalid{
+    background-color: #F9CBC1;
 }
 .btn-complete{
   padding:10px;
@@ -625,4 +643,46 @@ label{
 }
 .btn.active{
     box-shadow: inset 0px 3px 0px rgba(0,0,0,.125);
+}
+
+span.pop-over{
+    display: inline-block;
+    cursor:pointer;
+
+}
+
+.pathrep{
+    display: inline-block;
+}
+
+.artooltip{
+    display:none;
+    position: absolute;
+    top: 0;
+    left:0;
+    width:250px;
+    color:black;
+    background-color:#FFF7BC;
+    padding:20px;
+    min-height: 180px;
+}
+.art-close{
+    position: absolute;
+    top:10px;
+    right:10px;
+    cursor:pointer;
+}
+.artooltip a {
+    padding-top: 5px;
+}
+.info{
+    display: inline-block;
+    float: right;
+    padding:5px 10px;
+    margin:0;
+}
+.back{
+    display: block;
+    max-width: 50%;
+    float: left;
 }

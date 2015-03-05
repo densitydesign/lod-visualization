@@ -1,5 +1,6 @@
 .main.article-big
     .container-fluid
+        .tour(ng-joy-ride="startJoyRide", config="config", on-finish="onFinish()", on-skip="onFinish()")
         .row
             .col-md-3.article-conteiner
                 .article-content
@@ -10,7 +11,9 @@
                             h4.text-uppercase
                                 i.fa.fa-arrow-circle-left
                                 |  Back
+                        span(ng-click="startJoyRide=true", class="text-center info btn-complete") ?
                         h1 {{article.title}}
+
                         hr
                         h5 By {{article.author}}
                         h4.text-uppercase {{article.date}}
@@ -19,11 +22,12 @@
                                 i.fa.fa-link
                                 |  Original article
                         hr
-                        h4.text-uppercase
+                        h4.text-uppercase.main-topic
                             | Main Entity:
                             span.entity {{terms[0] | escape}}
 
-                    p(ng-bind-html-unsafe="article.text | highlight:terms")
+                    //p(ng-bind-html-unsafe="article.text | highlight:terms")
+                    p(ng-bind-html="article.text | highlight:terms")
 
             .col-md-9.viz
                 .tabbable-panel
@@ -31,19 +35,20 @@
                         
                         .controls
                             .row
-                                .col-md-4
+                                .col-md-4.ctrl-s
                                     label Serendipity
                                     span.help
                                         i.fa.fa-question-circle(data-toggle='tooltip', data-placement='right', title='Description of this setting')
                                     input(type="range", min="1", max="100", ng-model="serendipity")
-                                .col-md-2
+                                .col-md-2.ctrl-t
                                     label Threshold
                                     span.help
                                         i.fa.fa-question-circle(data-toggle='tooltip', data-placement='right', title='Description of this setting')
-                                    
-                                    input(class="cut", type='number', ng-model='cut', min='0', max='100')
+                                    div
+                                        input(class="cut", type='number', ng-model='cut', min='1', ng-max='article.num_of_associations')
+                                        span  / {{article.num_of_associations}}
 
-                                .col-md-3
+                                .col-md-3.ctrl-l
                                     label(style="display:block") Path length
                                     .btn-group.help
                                         label.btn.btn-primary(ng-model="checkModel.one", btn-checkbox) 1
@@ -51,7 +56,7 @@
                                         label.btn.btn-primary(ng-model="checkModel.three", btn-checkbox) 3
                                 .col-md-3
                                     div(ng-click="complete()", class="text-center btn-complete") Show the complete network
-                                    
+
 
 
                         .tab-content
@@ -62,12 +67,17 @@
 
             .col-md-9.paths(ng-show="selected && paths.length")
                 div.path-line(ng-repeat="path in paths")
-                    i.term {{terms[0] | escape}}
-                    span(ng-repeat="step in path.steps")
+                    span.term.pop-over(ids="{{terms[0]}}") {{terms[0] | escape}}
+                    .pathrep(ng-repeat="step in path.steps")
                         i.fa.fa-chevron-left(ng-show="dirLeft(step.property)")
                         |{{step.property | cutprop}}
                         i.fa.fa-chevron-right(ng-show="!dirLeft(step.property)")
-                        i(class="pop-over",data-id="{{step.destination}}", data-original-title="default value",data-placement="top",ng-class='{"term":terms.indexOf(step.destination)>-1}') {{ step.destination | escape}}
+                        span.pop-over(ids="{{step.destination}}",ng-class='{"term":terms.indexOf(step.destination)>-1}') {{ step.destination | escape}}
 
             .col-md-9.nopaths(ng-show="selected && !paths.length")
                 span No connection for the specified parameters
+
+        .artooltip
+            span
+                i.fa.fa-spinner.fa-pulse
+            i.art-close.fa.fa-times(ng-click="closePopup()")

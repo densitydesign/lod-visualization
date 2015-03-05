@@ -2,10 +2,63 @@
 
 /* Directives */
 
+function isEmpty(value) {
+    return angular.isUndefined(value) || value === '' || value === null || value !== value;
+}
+
 angular.module('myApp.directives', [])
 
+    .directive('ngMin', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, elem, attr, ctrl) {
+            scope.$watch(attr.ngMin, function () {
+                ctrl.$setViewValue(ctrl.$viewValue);
+            });
+            var minValidator = function (value) {
+                var min = scope.$eval(attr.ngMin) || 0;
+                if (!isEmpty(value) && value < min) {
+                    ctrl.$setValidity('ngMin', false);
+                    return undefined;
+                } else {
+                    ctrl.$setValidity('ngMin', true);
+                    return value;
+                }
+            };
 
-    .directive('dnetwork', function(apiService, $routeParams, $rootScope) {
+            ctrl.$parsers.push(minValidator);
+            ctrl.$formatters.push(minValidator);
+        }
+    };
+})
+
+.directive('ngMax', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, elem, attr, ctrl) {
+            scope.$watch(attr.ngMax, function () {
+                ctrl.$setViewValue(ctrl.$viewValue);
+            });
+            var maxValidator = function (value) {
+                var max = scope.$eval(attr.ngMax) || Infinity;
+                if (!isEmpty(value) && value > max) {
+                    ctrl.$setValidity('ngMax', false);
+                    return undefined;
+                } else {
+                    ctrl.$setValidity('ngMax', true);
+                    return value;
+                }
+            };
+
+            ctrl.$parsers.push(maxValidator);
+            ctrl.$formatters.push(maxValidator);
+        }
+    };
+})
+
+    .directive('dnetwork', function(apiService, $routeParams, $timeout,$rootScope) {
         return {
             restrict: 'E',
             replace: false,
@@ -186,12 +239,16 @@ angular.module('myApp.directives', [])
 
                             circle.filter(function(d){
                                 return d.id !== scope.terms[0] && scope.terms.indexOf(d.id)>-1
-                            })
+                            }).attr("entity","")
                             .on("click",function(d){
                                 
                                 if(!scope.clicked) {
                                     d3.event.stopPropagation();
                                     scope.clicked = true;
+
+                                    $timeout(function(){
+                                        scope.$apply();
+                                    });
 
                                     var netreq = {
                                        action:'graph',
@@ -210,7 +267,7 @@ angular.module('myApp.directives', [])
                                     var names = pf.names;
                                     scope.selected = d.id;
                                     scope.paths = pf.paths;
-                                    scope.$apply();
+                                   // scope.$apply();
                                         path.filter(function (e) {
                                         return names.indexOf(e.target.id) > -1 && names.indexOf(e.source.id) > -1
                                     })
@@ -312,12 +369,17 @@ angular.module('myApp.directives', [])
 
                 function deselect(unclick) {
 
+                    scope.closePopup();
+
                     if (d3.event.defaultPrevented) return;
 
                     if(unclick) {
                         scope.clicked = false;
                         scope.selected = null;
-                        scope.$apply();
+                        $timeout(function(){
+                            scope.$apply();
+                        });
+
                     }
                     d3.selectAll("svg circle").style("opacity", 1);
                     d3.selectAll("svg path").style("opacity", 1);
@@ -473,35 +535,58 @@ angular.module('myApp.directives', [])
 
                 update();
 
-               /* scope.$watch('index', function (newValue, oldValue) {
-                    var check = angular.equals(newValue, oldValue);
-                    if (!check) {
-
-                        update(newValue);
-
-                    }
-                });*/
 
             }
         };
     })
-    .directive('popOver', function(apiService) {
+    .directive('popOver', function(apiService, $rootScope) {
         return {
             restrict: 'C',
             link: function(scope, element, attr) {
 
-                element.tooltip();
-                $(element).bind('mouseover',function(e) {
+                scope.toolt = "";
+
+                var position = element[0].getBoundingClientRect();
 
 
-                    var myid = $(this).attr("data-id")
+                $(element).bind('click',function(e) {
 
-                    var netreq = {entity:myid}
-                    apiService.abstract(netreq).done(function (data) {
-                        attr.$set('originalTitle', data.abstract);
-                        element.tooltip('show');
-                    })
-                });
+                            $rootScope.open = true;
+
+
+
+                            var value = $(element).attr("ids");
+
+                            if (!scope.names.hasOwnProperty(value)) {
+
+
+                                $(".artooltip span").html('<i class="fa fa-spinner fa-spin"></i>');
+                                $(".artooltip").css({"left": e.pageX-$(".artooltip").width()/2, top:  e.pageY - $(".artooltip").height()- 70})
+                                $(".artooltip").show();
+                                var netreq = {entity: value};
+
+
+                                apiService.abstract(netreq).done(function (data) {
+
+                                    var abst = data.abstract.length >= 150 ? data.abstract.substr(0, 147) + "..." : data.abstract;
+
+                                    abst = abst + "<br/><br/><b><a href='http://en.wikipedia.org/wiki/"+value+"'>Wikipedia article</a></b>"
+
+                                    scope.toolt = abst;
+                                    scope.names[value] = abst;
+
+                                    $(".artooltip span").html(scope.toolt);
+                                })
+                            }
+                            else {
+                                console.log("knew that");
+                                scope.toolt = scope.names[value];
+                                $(".artooltip span").html(scope.toolt);
+                                $(".artooltip").css({"left": e.pageX-$(".artooltip").width()/2, top:  e.pageY - $(".artooltip").height()- 70})
+                                $(".artooltip").show();
+                            }
+
+                })
 
             }
         }

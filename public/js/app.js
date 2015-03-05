@@ -9,7 +9,10 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'ui.utils',
+    'ngRoute',
+    'ngCookies',
     'ui.bootstrap',
+    'ngJoyRide',
   'ui.bootstrap-slider'
 ]).
 config(function ($routeProvider, $locationProvider) {

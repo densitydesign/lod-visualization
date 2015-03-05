@@ -34,7 +34,8 @@ angular.module('myApp.controllers', [])
 
   })
 
-  .controller('ArticleCtrl', function ($scope, $http, $injector, apiService, $routeParams) {
+  .controller('ArticleCtrl', function ($rootScope,$scope, $http, $injector, $cookieStore,apiService, $routeParams) {
+
 
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;
@@ -52,6 +53,92 @@ angular.module('myApp.controllers', [])
 
         $scope.pathslen = [1,2,3];
 
+        $scope.startJoyRide=$cookieStore.get('walkthrough') ? false : true;
+
+        $scope.highlightFirst= function() {
+            $("circle[entity]").first().d3Click();
+        }
+        $scope.unhighlight= function() {
+            $("svg").d3Click();
+        }
+
+
+        $scope.config = [
+            {
+                type: "title",
+                heading: "Welcome to our interface!",
+                text: 'This walkthrough will help you use the application'
+
+            },{
+                type: "element",
+                selector: ".article-content",
+                heading: "Original article",
+                text: "Here you can see the article we took and analysed from the New York Times. ",
+                placement: "right",
+                scroll: true
+            },{
+                type: "element",
+                selector: ".main-topic",
+                heading: "Main topic",
+                text: "This is the main \"topic\" of the article.Starting from this topic we got all the correlations in the english DBpedia between it and the other topics (highlighted in yellow below) in the article. ",
+                placement: "right",
+                scroll: true
+            }
+            ,{
+                type: "element",
+                selector: ".paths",
+                heading: "Topics network",
+                text: "Here you can see all the correlations between the main topic (the big yellow node) and all the other topics that we found and analysed in the article (the other yellow nodes).The grey nodes are the topics on DBpedia that link them but that are not in the article.",
+                placement: "left",
+                scroll: true
+            },{
+                type: "element",
+                selector: ".ctrl-s",
+                heading: "Serendipity",
+                text: "we try to show only the most serendipitous correlations, meaning the ones that are more relevant to the article and more unexpected based on the data semantics. You can determine how to weight the relevance and unexpectedness criteria by moving the slider",
+                placement: "bottom",
+                scroll: true
+            },{
+                type: "element",
+                selector: ".ctrl-t",
+                heading: "Links threshold",
+                text: "You can determine the number of correlations to visualize",
+                placement: "bottom",
+                scroll: true
+            },{
+                type: "element",
+                selector: ".ctrl-l",
+                heading: "Filter by length",
+                text: "you can choose to visualize and filter out correlations based on the length, computed as the number of arcs",
+                placement: "bottom",
+                scroll: true
+            },
+            {
+                type: "function",
+                fn:'highlightFirst' //(can also be a string, which will be evaluated on the scope)
+            },{
+                type: "element",
+                selector: ".col-md-9.paths",
+                heading: "Topic insight",
+                text: "If you click on a yellow node you can see the path between it and the main topic.",
+                placement: "left",
+                scroll: true
+            }, {
+                type: "function",
+                fn:'unhighlight' //(can also be a string, which will be evaluated on the scope)
+            },{
+                type: "element",
+                selector: ".info",
+                heading: "Show help",
+                text: "To see this walkthrough again, click on the help button.",
+                placement: "bottom",
+                scroll: true
+            }
+        ];
+    $scope.onFinish = function() {
+        $cookieStore.put("walkthrough",true);
+    }
+
 
     $scope.highlighted = null;
 
@@ -63,6 +150,8 @@ angular.module('myApp.controllers', [])
       .done(function (data){
         $scope.article = data;
         $scope.$apply();
+            console.log(data);
+
       })
 
         $scope.dirLeft = function(t) {
@@ -139,18 +228,17 @@ angular.module('myApp.controllers', [])
 
         $scope.$watch("highlighted", function(newValue,oldValue) {
 
-            if(newValue!== oldValue) {
+            if(newValue!== oldValue && newValue) {
               d3.selectAll(".highlight").classed("highlight", false);
               //console.log("here",newValue);
 
                       $('.ui-match').filter(function() {
-                          
                             return $(this).attr('data-id').toLowerCase() == newValue.replace(/_/g," ").toLowerCase();
                         }).addClass("highlight");
 
 
                 if ($scope.selected !== newValue) {
-                    $scope.selected = newValue
+                    $scope.selected = newValue;
                     if(newValue !== null) {
 
                         var el = d3.select("svg").selectAll("circle").filter(function(d){
@@ -162,11 +250,20 @@ angular.module('myApp.controllers', [])
                     }
                 }
             }
+
+            if(!newValue) {
+                $scope.selected = newValue;
+                d3.selectAll(".highlight").classed("highlight", false);
+            }
+
         })
 
         $scope.$watch("selected", function(newValue,oldValue) {
 
             if(newValue!== oldValue) {
+
+                $scope.names={};
+
                 if ($scope.highlighted !== newValue) {
                     $scope.highlighted = newValue
                 }
@@ -180,21 +277,6 @@ angular.module('myApp.controllers', [])
         var toOne = newValue/100;
         $scope.relevance = toOne;
         $scope.rarity = 1-toOne;
-
-       /* var cut = $scope.cut == 0 ? 100 : $scope.cut;
-        //call api
-        var netreq = {
-          id:$scope.articleId,
-          relevance : $scope.relevance,
-          rarity : $scope.rarity,
-          top : cut
-        }
-
-        apiService.associations(netreq).done(function (data) {
-           //$("svg").d3Click();
-          $scope.drawNet(data);
-
-        });*/
 
           $scope.callAssociations();
 
@@ -222,26 +304,40 @@ angular.module('myApp.controllers', [])
           else {
           $scope.callAssociations();
       }
-
     })
+
+
+        $scope.closePopup = function() {
+            $rootScope.open = false;
+            $(".artooltip").hide();
+            $(".artooltip span").html('<i class="fa fa-spinner fa-pulse"></i>');
+        }
+
 
 
         $scope.callAssociations = function() {
 
 
-            var netreq = {
-                id:$scope.articleId,
-                relevance : $scope.relevance,
-                rarity : $scope.rarity,
-                top : $scope.cut,
-                paths : $scope.pathslen
+            if(!$scope.article || $scope.cut<1 || $scope.cut>$scope.article.num_of_associations || $scope.cut == null || !$scope.cut) {
+                return null
             }
 
-            apiService.associations(netreq).done(function (data) {
-                //$("svg").d3Click();
-                $scope.drawNet(data);
-            });
-        }
+            else {
+
+                var netreq = {
+                    id: $scope.articleId,
+                    relevance: $scope.relevance,
+                    rarity: $scope.rarity,
+                    top: $scope.cut,
+                    paths: $scope.pathslen
+                }
+
+                apiService.associations(netreq).done(function (data) {
+                    //$("svg").d3Click();
+                    $scope.drawNet(data);
+                });
+            }
+        };
 
         $scope.$watch("checkModel",function(newValue,oldValue){
 
