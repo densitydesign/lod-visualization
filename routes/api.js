@@ -6,7 +6,7 @@ var request = require('request'),
 //baseUrl = 'http://jeeg.siti.disco.unimib.it:82/web/app_dev.php/api/'
 //articles/2
     //baseUrl = 'http://jeeg.siti.disco.unimib.it/web/app_dev.php/api/'
-    baseUrl="http://siti-rack.siti.disco.unimib.it/dacena-v3/web/app_dev.php/api/"
+    baseUrl="http://dacena.disco.unimib.it/app.php/api/"
 
 // Articles list
 
@@ -25,6 +25,7 @@ exports.articles = function (req, res) {
         function (error, response, body) {
             var data = JSON.parse(body);
             res.json(data);
+            console.log("articles response!!", body)
         }
     )
 
@@ -43,8 +44,15 @@ exports.article = function (req, res) {
             headers: headers
         },
         function (error, response, body) {
-            var data = JSON.parse(body);
+            if(error && error !==null) {
 
+            }
+            try {
+                var data = JSON.parse(body);
+            }
+            catch(err){
+                console.log(err,body,response.request.uri);
+            }
             res.json(data);
         }
     )
@@ -62,7 +70,7 @@ exports.click = function (req,res) {
         if (err) {
             return console.error('post failed:', err);
         }
-        console.log('Server responded with:', body);
+
     });
 }
 
@@ -94,6 +102,7 @@ exports.allAssociations = function (req, res) {
                 })
             }
             res.json(fin);
+
         }
     )
 }
@@ -111,6 +120,7 @@ exports.completeNetwork = function (req, res) {
         },
 
         function (error, response, body) {
+            console.log("complete network response!!", body)
 
             var obj = computePaths(body);
             res.json(obj);
@@ -142,7 +152,7 @@ exports.abstract = function(req,res) {
 
             var obj = JSON.parse(body);
             res.json(obj);
-            console.log(obj);
+
         }
     )
 
@@ -171,7 +181,8 @@ exports.associations = function (req, res) {
         },
 
         function (error, response, body) {
-           
+            console.log(body)
+            console.log(response.request.uri);
             //console.log(body)
             var obj = computePaths(pathsArr,body)
             res.json(obj);
@@ -239,7 +250,6 @@ var data = JSON.parse(body);
 
                         if(paths.indexOf(e.steps.length)>-1) {
 
-                            console.log(e);
 
                             var source = e.source;
                             if (terms.indexOf(source) == -1) terms.push(source);
