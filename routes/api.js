@@ -23,8 +23,12 @@ exports.articles = function (req, res) {
         },
 
         function (error, response, body) {
+		
+	    if(error) console.warn(error);
+	    else {	
             var data = JSON.parse(body);
             res.json(data);
+	    }
         }
     )
 
