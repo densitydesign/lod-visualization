@@ -126,7 +126,8 @@ exports.completeNetwork = function (req, res) {
         function (error, response, body) {
             console.log("complete network response!!", body)
 
-            var obj = computePaths(body);
+            var obj = computePaths([1,2,3],body);
+            console.log("obj",obj);
             res.json(obj);
         }
     )
