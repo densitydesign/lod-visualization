@@ -84,6 +84,19 @@ padding-top: 10px;
 padding-bottom: 50px;
 }
 
+.team{
+	background-color: #D2D2D2;
+}
+
+.about a {
+	background: #FFF7BC;
+	padding:0 1px 0 1px;
+}
+
+.about a:hover{
+	background: #ffe632;
+	color: #000;
+}
 
 
 .explore-article{
@@ -210,6 +223,9 @@ a:hover{
 	margin:0;
 	padding: 0;
 }
+
+
+
 
 /* Tabs panel */
 .tabbable-panel {
