@@ -4,14 +4,13 @@
 
 
 body, html {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
-    height:100%;
-   
-
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  height:100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Patua One';
+  font-family: 'Merriweather', Georgia, serif;
 }
 
 
@@ -293,6 +292,7 @@ h1{
 
 .intro h4, .explore-title {
     font-weight: 700;
+    font-size: 1.1em; 
 }
 
 .intro a{
@@ -325,6 +325,30 @@ h1{
     padding-bottom: 50px;
 }
 
+.members {
+  font-size: 13px!important;
+}
+
+.members a{
+  background: #FFF7BC;
+  padding: 0 1px 0 1px;
+  font-weight: 700;
+}
+
+.members a:hover{
+  background: #ffe632;
+  padding: 0 1px 0 1px;
+  font-weight: 700;
+  color:#333;
+}
+
+.members-container{
+  margin-top: -20px;
+}
+
+.members-container h4{
+  
+}
 
 
 .explore-article{
@@ -375,13 +399,15 @@ h5{
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 0.9em;
+    letter-spacing: 1px;
 }
 
 label{
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 1em;
+    font-size: 0.9em;
     padding-right: 3px;
+    margin-top: 5px;
 }
 
 a {
@@ -438,9 +464,9 @@ a:hover{
 
 .controls{
     margin-top:0px;
-    height: 80px;
+    height: 90px;
     border-bottom: 1px solid #e7e7e7;
-    padding: 15px;
+    padding: 10px;
 }
 
 .settings{
@@ -557,7 +583,16 @@ text {
 .pathrep span{
     text-decoration: none;
     padding:0px 5px;
-    background-color:#ddd;
+    background-color:#f3f3f3;;
+    display: inline-block;
+    margin: 0 3px;
+    transition: all 0.5s ease;
+}
+
+.pathrep span:hover{
+    text-decoration: none;
+    padding:0px 5px;
+    background-color:#E0E0E0;
     display: inline-block;
     margin: 0 3px;
 }
@@ -570,18 +605,27 @@ text {
 .pathrep i.fa {
     background-color: transparent;
 }
+
 .term{
     background-color: #FFF7BC !important;
     margin-right: 5px;
     padding: 0px 5px;
+    transition: all 0.5s ease;
 }
+
+.term:hover{
+    background-color: #ffe632 !important;
+    margin-right: 5px;
+    padding: 0px 5px;
+}
+
 .path-line{
     margin-bottom: 3px;
 }
 
 .footer{
     height: 150px;
-    background-color: #333;
+    background-color: #ccc;
 }
 
 .top{
@@ -604,6 +648,7 @@ text {
     font-size: 0.9em;
     min-width: 40px;
     margin-right:4px;
+    height: 30px;
 }
 .cut{
   clear:left;
@@ -611,18 +656,34 @@ text {
 .cut.ng-invalid{
     background-color: #F9CBC1;
 }
+
+input[type=range] { 
+  margin-top: 10px;
+}
+
+.threshold-total{
+  margin-top: 5px;
+  display: inline-block;
+}
+
 .btn-complete{
   padding:10px;
   cursor:pointer;
-  margin-top:15px;
+  margin-top:20px;
   background:#f3f3f3;
   width: auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
 }
+
+.btn-complete:hover{
+  background:#E0E0E0;
+}
+
 .help {
   display: inline-block;
-}
-label{
-
+  margin-top: -5px;
 }
 
 .nopaths{
@@ -642,7 +703,8 @@ label{
     border-radius:0;
 }
 .btn.active{
-    box-shadow: inset 0px 3px 0px rgba(0,0,0,.125);
+     box-shadow:inset 0px 0px 0px 0px #ffe632;
+     background-color: #ffe632;
 }
 
 span.pop-over{
@@ -664,6 +726,7 @@ span.pop-over{
     color:black;
     background-color:#FFF7BC;
     padding:20px;
+    font-family: 'Merriweather', Georgia, serif;
     min-height: 180px;
 }
 .art-close{
@@ -674,7 +737,15 @@ span.pop-over{
 }
 .artooltip a {
     padding-top: 5px;
+    color:#555;
+    font-size: 12px;
 }
+
+.artooltip a:hover {
+    padding-top: 5px;
+    color:#000;
+}
+
 .info{
     display: inline-block;
     float: right;
@@ -685,4 +756,19 @@ span.pop-over{
     display: block;
     max-width: 50%;
     float: left;
+}
+
+.popover-title {
+  color: #333;
+  background: #FFF7BC;
+}
+
+.popover-title {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  padding: 13px;
+}
+
+.btn {
+  border: none;
 }
