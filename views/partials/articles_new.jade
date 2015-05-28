@@ -17,8 +17,14 @@ body
         .row
             .col-md-12
                 h4.text-uppercase.explore-title Explore the articles
+                    span.pull-right.dropdown(dropdown) Show
+                        a.dropdown-toggle(dropdown-toggle href) {{filter}}
+                        ul.dropdown-menu
+                            li.dropchoice(ng-repeat="choice in cats", ng-click="filterArts(choice)") {{choice}}
+
+
         .row
-            .col-md-3(ng-repeat="article in articles")
+            .col-md-3.art-box(ng-repeat="article in filtered")
                 a(href="/article/{{article.id}}")
                     .explore-article
                         h1 {{ article.title | truncate:50 }}
@@ -29,3 +35,31 @@ body
                         h4.text-uppercase {{ article.numMainInstances || "0"}} entities
 
     .footer
+        .container(style="padding:30px 0 0 0;margin:0 auto")
+            .row
+                .col-lg-6
+                    p A project by <a href='http://www.densitydesign.org'> DensityDesign</a> and <a href='http://www.disco.unimib.it/'> DISCO</a>
+
+                    a(href='http://www.densitydesign.org')
+                        img(src='images/dd_logo.png')
+                    a(href='http://www.disco.unimib.it/',style="padding-left:20px;")
+                        img(src='images/disco_logo.jpg')
+
+
+
+
+
+                .col-lg-6
+                    p share
+
+                    p
+
+                        a.share(target='_blank', href='https://twitter.com/intent/tweet?text=DaCENA%3A+Serendipitous+News+Reading+with+Data+Contexts+%23linkeddata+%23datajournalism+%40densitydesign+%40MatteoPalmonari')
+                            span.fa.fa-twitter
+
+                        a.share(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=http://dacena.densitydesign.org/')
+                            span.fa.fa-facebook
+
+                        a.share(target='_blank', href='https://plus.google.com/share?url=http://dacena.densitydesign.org/')
+                            span.fa.fa-google-plus
+

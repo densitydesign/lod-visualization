@@ -9,7 +9,6 @@ body
                     h4.text-uppercase Project overview
                     p
                         | DaCENA (Data Context for News Articles) is a web application that showcases a new approach to reading online news articles with the support of a data context built from interlinked facts available in the Web of Data. Given a source article, a set of facts that are estimated to be more interesting for the readers are extracted from the Web and presented using tailored information visualization methods and an interactive user interface. By looking at these facts, the reader access background factual knowledge with the advantage of being supported in the interpretation of the news content and being suggested connections to related topics to further explore.
-
                      a.back(href='/articles')
                         h4.text-uppercase
                             i.fa.fa-arrow-circle-left  home
@@ -18,16 +17,17 @@ body
     .container(style="margin-top:0;padding-bottom:0px")
         .row
             .col-md-8.about
-                h4.text-uppercase.explore-title Interlinked Facts in the Web of Data
+                h4.text-uppercase.explore-title Interlinked Facts in the Web of Data.
                 p
-                    | The Web has transformed into a large scale repository of facts. Facts represent features of specific entities. For example the fact < Brack Obama birthdate 1961-08-04> in DBPedia - a data-based representation of Wikipedia content – describes the year when Barack Obama was born. Semantic associations are facts that represent relations existing between two entities. For example, FACTX-> represent that ….  Several semantic associations that mention a common entity can be interlinked, forming a network of interlinked associations, or, interlinked facts. For example, if we also know that FACTY-, we know that  the entity subject_of_FACTX is connected to the entity subject of subject_of_FACTY because – natural language explanation of the association -.
+                    | The Web has transformed into a large-scale repository of facts. Facts represent features of specific entities. For example the facts < Artur Mas I GavarropresidentOf Convergence and Union > < Convergence and Union type Political Party> < Artur Mas I Gavarro birthplace Catalonia> available in DBPedia - a data-based representation of Wikipedia content – tell that Artur Mas I Gavarro is president of the political party Convergence and Union and was born in Catalonia. Semantic associations are chains of facts that connect two entities. For example, “Catalonia is birth place of Artur Mas I Gavarro, who is the president of Convergence and Union (a party), which has Catalan nationalism as ideology” connects the two entities Catalonia and Catalan nationalism. Several semantic associations that mention a common entity can be interlinked, forming a network of interlinked associations, or, interlinked facts.
                 h4.text-uppercase.explore-title Data Context for a News Articles as a Network of Interlinked Fact.
                 p
-                    | DaCENA uses a novel interactive user interface to presents to the reader a set of interlinked facts that describe semantic associations between the main topic of an article, represented by an entity, and several other entities that are mentioned in the article. The interlinked associations represent context data that readers can navigate through with the goal to let them explore background knowledge relevant to the article by viewing at the network of relations that interconnect the entities in the article.
-                    | DaCENA strive to show only those semantic associations that are evaluated to be more interesting for the readers, among a very large amount of existing ones. To this end DaCENA looks for serendipitous associations by combining two different criteria: relevance, which captures how related an association is to the content of the article, and unexpectedness, which captures how an association is likely to be unknown to the reader.
+                    | DaCENA uses a novel interactive user interface to presents to the reader a set of interlinked facts that describe semantic associations between the main topic of an article, represented by an entity, and several other entities that are mentioned in the article. The interlinked associations represent context data that readers can navigate through, thus exploring additional background knowledge relevant to the article.
+                    | DaCENA makes this exploration interactive and strives to show only those semantic associations that are expected to be more interesting for the readers. To this end DaCENA order the associations by serendipity, which is estimated as a combination of two different factors: relevance, which captures how related an association is to the content of the article, and unexpectedness, which captures how an association is likely to be unknown to the reader.
                 h4.text-uppercase.explore-title Advantages for the reader
                 p
-                    | The data context shown by DaCENA can help the reader to get a better insight into the context of the news. The reader can learn information that is relevant to better understand the content of the article, for example … Example 1. In addition the reader might uncover unknown fact, that may shed a different light on the article content Example 2. The experienced reader, or the journalist, may use the data context to discover unkown connections or focus on little known facts that can inspire a new story.
+                    | DaCENA aims to be a first steps towards data journalism based on the analysis of relational data. A news reader can leverage the explored data to better understand the context of the story told in the article. Consider the example of the article "A Threat to Spanish Democracy" published in the New York Times on 7th, November 2014, and discussing the issue of nationalism in the Catalonia region. By looking at the association “Catalonia is birth place of Artur Mas I Gavarro, who is the president of Convergence and Union (a party), which has Catalan nationalism as ideology”, the reader discovers the name of a prominent politician (currently leading the Catalonia government) and of his party, which were not mentioned in the article. In addition he/she learns that Convergence and Union is a nationalist party.
+                    | A journalist may use DaCENA to have inspiration for a new story. For example, in other associations found by DaCENA, e.g. the ones between Catalonia and Autonomous countries of Spain, he/she can find out about other autonomous communities. These findings may inspire a new story about the political landscape behind nationalist ideologies in Spain and a comparative analysis of different political movements in favour of autonomy.
                 
                 h4.text-uppercase.explore-title Team
                 p
@@ -57,16 +57,31 @@ body
                     | Matteo Palmonari, Giorgio Uboldi, Marco Cremaschi, Daniele Ciminieri and Federico Bianchi. </br>
                     | 12th ESWC 2015
     .footer
-        .container 
+        .container(style="padding:30px 0 0 0;margin:0 auto")
             .row
-                .col-md-3
-                    <img src="">
-                         
-    // jQuery (necessary for Bootstrap's JavaScript plugins)
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-    // Include all compiled plugins (below), or include individual files as needed
-    script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
-    script(type='text/javascript').
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+                .col-lg-6
+                    p A project by <a href='http://www.densitydesign.org'> DensityDesign</a> and <a href='http://www.disco.unimib.it/'> DISCO</a>
+
+                    a(href='http://www.densitydesign.org')
+                        img(src='images/dd_logo.png')
+                    a(href='http://www.disco.unimib.it/',style="padding-left:20px;")
+                        img(src='images/disco_logo.jpg')
+
+
+
+
+
+                .col-lg-6
+                    p share
+
+                    p
+
+                        a.share(target='_blank', href='https://twitter.com/intent/tweet?text=DaCENA%3A+Serendipitous+News+Reading+with+Data+Contexts+%23linkeddata+%23datajournalism+%40densitydesign+%40MatteoPalmonari')
+                            span.fa.fa-twitter
+
+                        a.share(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=http://dacena.densitydesign.org/')
+                            span.fa.fa-facebook
+
+                        a.share(target='_blank', href='https://plus.google.com/share?url=http://dacena.densitydesign.org/')
+                            span.fa.fa-google-plus
+

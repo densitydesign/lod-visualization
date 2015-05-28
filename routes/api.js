@@ -29,7 +29,7 @@ exports.articles = function (req, res) {
             var data = JSON.parse(body);
             res.json(data);
 	    }
-            console.log("articles response!!", body)
+            console.log(body,response.request.uri);
         }
     )
 

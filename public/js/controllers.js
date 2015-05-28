@@ -22,21 +22,50 @@ angular.module('myApp.controllers', [])
 
   .controller('IndexCtrl', function ($scope, $http, $injector, apiService) {
 
+        function uniq(value, index, self) {
+            return self.indexOf(value) === index;
+        }
+        $scope.filter = "All";
 
-        console.log("ad!!");
+        $scope.filterArts= function(cat){
 
-    apiService.articles({})
+            $scope.filter=cat;
+            if(cat!=="All") {
+                $scope.filtered = $scope.articles.filter(function(d){return d.category === cat});
+            }
+            else $scope.filtered = $scope.articles;
+
+
+        }
+
+        $scope.status = {
+            isopen: false
+        };
+
+
+        $scope.toggleDropdown = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            $scope.status.isopen = !$scope.status.isopen;
+        };
+
+
+        apiService.articles({})
       .done(function(data){
         $scope.articles = data;
-            console.log(data);
+        $scope.filtered = $scope.articles;
+        $scope.cats = $scope.articles.map(function(d){return d.category}).filter(uniq);
+        $scope.cats.push("All");
         $scope.$apply();
       })
 
   })
 
+
+
   .controller('ArticleCtrl', function ($rootScope,$scope, $http, $injector, $cookieStore,apiService, $routeParams) {
 
-
+    $scope.loading = true;
     $scope.articleId = $routeParams.id;
     $scope.openGraph = false;
     $scope.degree = 2;
@@ -149,8 +178,8 @@ angular.module('myApp.controllers', [])
     apiService.article( { id : $scope.articleId })
       .done(function (data){
         $scope.article = data;
-        $scope.$apply();
-            console.log(data);
+        $scope.loading = false;
+            $scope.$apply();
 
       })
 
@@ -162,16 +191,18 @@ angular.module('myApp.controllers', [])
 
 
         $scope.allAssociations = function() {
+            $scope.loading  = true;
             var req = {id:$scope.articleId};
             apiService.allAssociations(req)
                 .done(function (data) {
                     $scope.terms=data;
                     $scope.$apply();
+                    $scope.loading=false;
 
                 })
         }
 
-        $scope.getAssociations = function() {
+  /*      $scope.getAssociations = function() {
 
             $scope.rarity = 0;
             $scope.relevance = 1;
@@ -186,15 +217,14 @@ angular.module('myApp.controllers', [])
                 id:$scope.articleId
             };
 
-            console.log($scope.assocReq);
             apiService.associations($scope.assocReq)
                 .done(function (data) {
 
                 })
         }
+*/
 
-
-        $scope.getNetwork = function() {
+  /*      $scope.getNetwork = function() {
 
             $scope.rarity = 0;
             $scope.relevance = 1;
@@ -211,7 +241,7 @@ angular.module('myApp.controllers', [])
                 })
         }
 
-
+*/
         $(".article-content").on("click",".ui-match",function(){
             $scope.highlighted = $(this).attr("data-id").replace(/ /g,"_");
             $scope.$apply();
@@ -222,7 +252,6 @@ angular.module('myApp.controllers', [])
             }
 
             apiService.click(netreq).done(function () {
-                console.log("done click report")
             });
         })
 
@@ -230,7 +259,7 @@ angular.module('myApp.controllers', [])
 
             if(newValue!== oldValue && newValue) {
               d3.selectAll(".highlight").classed("highlight", false);
-              //console.log("here",newValue);
+
 
                       $('.ui-match').filter(function() {
                             return $(this).attr('data-id').toLowerCase() == newValue.replace(/_/g," ").toLowerCase();
@@ -285,6 +314,7 @@ angular.module('myApp.controllers', [])
 
 
     $scope.complete = function() {
+        $scope.loading = true;
        var netreq = {
           id:$scope.articleId
         }
@@ -293,7 +323,11 @@ angular.module('myApp.controllers', [])
           .done(function (data) {
               $("svg").d3Click();
                 $scope.drawNet(data);
+                $scope.loading = false;
+                $scope.$apply();
         })
+
+
     }
 
       $scope.$watch("cut",function(newValue,oldValue){
@@ -317,7 +351,7 @@ angular.module('myApp.controllers', [])
 
         $scope.callAssociations = function() {
 
-
+            $scope.loading = true;
             if(!$scope.article || $scope.cut<1 || $scope.cut>$scope.article.num_of_associations || $scope.cut == null || !$scope.cut) {
                 return null
             }
@@ -335,7 +369,11 @@ angular.module('myApp.controllers', [])
                 apiService.associations(netreq).done(function (data) {
                     //$("svg").d3Click();
                     $scope.drawNet(data);
-                });
+                    $scope.loading = false;
+                    $scope.$apply();
+                })
+
+
             }
         };
 

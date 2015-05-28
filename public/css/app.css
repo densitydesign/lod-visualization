@@ -551,12 +551,6 @@ a:hover{
 }
 
 
-
-.footer{
-    height: 150px;
-    background-color: #333;
-}
-
 .top{
     height: 10px;
     background-color: #333;
@@ -624,8 +618,12 @@ text {
 }
 
 .footer{
-    height: 150px;
-    background-color: #ccc;
+    font-family:"Roboto";
+    background-color: #333;
+    padding-bottom:20px;
+}
+.footer p{
+    font-family:"Roboto";
 }
 
 .top{
@@ -771,4 +769,78 @@ span.pop-over{
 
 .btn {
   border: none;
+}
+.spinner{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    opacity:1;
+    text-align: center;
+    padding-top:20%;
+    z-index:999999;
+    font-size:70px;
+    background-color:rgba(255,255,255,0.8);
+    -webkit-transition:all linear 0.5s;
+    -moz-transition:all linear 0.5s;
+    -o-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+.slide-lbls{
+    font-size:11px;
+}
+.hid{
+    opacity:0;
+    z-index:0;
+}
+.dropchoice{
+    padding:10px;
+    cursor:pointer;
+    opacity:1;
+}
+.dropdown-toggle{
+    padding-left:7px;
+    text-decoration: underline;
+}
+.art-box.ng-move {
+    transition: 0.5s;
+    opacity: 0;
+}
+.art-box.ng-move.ng-move-active {
+    opacity: 1;
+}
+.art-box{
+    opacity:1;
+
+}
+.footer img{
+    height:80px;
+}
+
+.footer p{
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color:#fff;
+}
+.footer a{
+    color:#FFF7BC;
+}
+
+
+.footer h3{
+    font-size: 0.8em;
+}
+
+.footer .share {
+    color: white;
+    font-size: 2em;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.footer .share:hover{
+    color:#FFF7BC;
 }

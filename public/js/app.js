@@ -11,6 +11,7 @@ angular.module('myApp', [
   'ui.utils',
     'ngRoute',
     'ngCookies',
+    'ngAnimate',
     'ui.bootstrap',
     'ngJoyRide',
   'ui.bootstrap-slider'
