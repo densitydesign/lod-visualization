@@ -665,9 +665,10 @@ input[type=range] {
 }
 
 .btn-complete{
-  padding:10px;
+  padding:7px;
   cursor:pointer;
-  margin-top:20px;
+  margin-top:27px;
+    font-size:0.7em;
   background:#f3f3f3;
   width: auto;
   text-transform: uppercase;
